@@ -1,3 +1,15 @@
 <resources >
-    <string name="app_name" >SahabatGula</string >
+    <string name="app_name" >Sahabat Gula</string >
+    <string name="sahabat_gula" >Sahabat Gula</string >
+    <string name="text_splash" >Deteksi dan Tracking Gizi Makanan Kemasan</string >
+    <string name="hello_blank_fragment" >Hello blank fragment</string >
+    <string name="headline_splash_1" >Scan Cepat, Kenali Produk Instan</string >
+    <string name="text_splash_1" >Gunakan kamera untuk mendeteksi kemasan makanan dan dapatkan informasi nilai gizi secara real-time dengan teknologi image recognition.</string >
+    <string name="next" >Selanjutnya</string >
+    <string name="skip" >Skip</string >
+    <string name="headline_splash_2" >Informasi Gizi dalam Genggaman</string >
+    <string name="text_splash_2" >Akses database makanan kemasan lengkap dengan informasi nutrisi penting, khususnya untuk penderita diabetes.</string >
+    <string name="headline_splash_3" >Rencana Makan Lebih Sehat</string >
+    <string name="text_splash_3" >Pantau batas konsumsi harian dengan informasi lengkap nilai gizi dan rekomendasi porsi makanan yang disarankan.</string >
+    <string name="join_with_us" >Bergabung Bersama Kami</string >
 </resources >

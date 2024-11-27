@@ -2,4 +2,24 @@
 <resources >
     <color name="black" >#FF000000</color >
     <color name="white" >#FFFFFFFF</color >
+
+    <color name="green_low_risk" >#099825</color >
+    <color name="green_primary" >#086B5A</color >
+    <color name="green_selected" >#CDE8DF</color >
+    <color name="green_fill_risk" >#D8E9DB</color >
+
+    <color name="yellow_mid_risk" >#E8A701</color >
+    <color name="yellow_fill_risk" >#F3EBD7</color >
+
+    <color name="red_high_risk" >#A41D08</color >
+    <color name="red_number" >#BA1A1A</color >
+    <color name="red_fill_risk" >#EBDAD8</color >
+
+    <color name="grey_outline" >#6F7975</color >
+    <color name="grey_outline_button" >#79747E</color >
+    <color name="grey_button_disable" >#E3E3E4</color >
+    <color name="grey_text" >#3F4946</color >
+    <color name="grey_text_2" >#06201A</color >
+    <color name="grey_text_3" >#171D1B</color >
+
 </resources >

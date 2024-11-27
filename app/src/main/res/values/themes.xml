@@ -1,8 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools" >
     <!-- Base application theme. -->
-    <style name="Base.Theme.SahabatGula" parent="Theme.Material3.DayNight.NoActionBar" >
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.SahabatGula" parent="Theme.Material3.DayNight" >
+        <!--Primary brand color-->
+        <item name="colorPrimary" >@color/green_primary</item >
+        <item name="colorOnPrimary" >@color/white</item >"
+        <!--Secondary brand color-->
+
+        <!--Surface brand color-->
+        <item name="colorSurface" >@color/grey_button_disable</item >
+        <item name="colorOnSurface" >@color/grey_text_3</item >
+
+        <!--Outline color-->
+        <item name="colorOutline">@color/grey_outline</item>
     </style >
 
     <style name="Theme.SahabatGula" parent="Base.Theme.SahabatGula" />
