@@ -1,14 +1,12 @@
-package com.dicoding.sahabatgula.ui.main
+package com.dicoding.sahabatgula.ui.auth
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.sahabatgula.R
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.fragment_last_info)
     }
 }

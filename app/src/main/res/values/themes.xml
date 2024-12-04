@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools" >
     <!-- Base application theme. -->
-    <style name="Base.Theme.SahabatGula" parent="Theme.Material3.DayNight" >
+    <style name="Base.Theme.SahabatGula" parent="Theme.Material3.DayNight.NoActionBar" >
         <!--Primary brand color-->
         <item name="colorPrimary" >@color/green_primary</item >
         <item name="colorOnPrimary" >@color/white</item >"
@@ -12,6 +12,11 @@
 
         <!--Outline color-->
         <item name="colorOutline">@color/grey_outline</item>
+
+
+        <item name="colorSecondaryContainer">@color/green_selected</item>
+        <item name="colorSurfaceContainer">@color/green_fill_risk</item>
+
     </style >
 
     <style name="Theme.SahabatGula" parent="Base.Theme.SahabatGula" />

@@ -12,4 +12,166 @@
     <string name="headline_splash_3" >Rencana Makan Lebih Sehat</string >
     <string name="text_splash_3" >Pantau batas konsumsi harian dengan informasi lengkap nilai gizi dan rekomendasi porsi makanan yang disarankan.</string >
     <string name="join_with_us" >Bergabung Bersama Kami</string >
+    <string name="headline_login" >Langkah Awal untuk Hidup Lebih Sehat</string >
+    <string name="text_login" >Login untuk mulai memantau nutrisi dan melacak asupan Anda setiap hari.</string >
+    <string name="input_password" >Kata Sandi</string >
+    <string name="input_email" >Email</string >
+    <string name="password" >Masukkan kata sandi Anda</string >
+    <string name="ex_email" >contoh: example@gmail.com</string >
+    <string name="forgot_password" >Lupa kata sandi?</string >
+    <string name="login" >Login</string >
+    <string name="dont_have_account" >Belum punya akun?\u0020</string >
+    <string name="register_now" >Daftar Sekarang</string >
+    <string name="create_new_password" >Buat Kata Sandi Baru</string >
+    <string name="text_new_password" >Kata sandi harus berbeda dengan sebelumnya dan terdiri dari minimal 8 karakter.</string >
+    <string name="save_changes" >Simpan Perubahan</string >
+    <string name="input_new_password" >Kata Sandi Baru</string >
+    <string name="input_username" >Nama</string >
+    <string name="headline_register" >Hidup Sehat Dimulai dengan Pilihan yang Tepat</string >
+    <string name="text_register" >Mulai perjalanan Anda untuk mengontrol asupan gula dan nutrisi.</string >
+    <string name="already_have_account" >Sudah punya akun?\u0020</string >
+    <string name="register" >Register</string >
+    <string name="text_checkbox" >Saya menyetujui Syarat dan Ketentuan serta Kebijakan Privasi Sahabat Gula</string >
+    <string name="headline_basic_info" >Lengkapi Informasi Dasar Anda</string >
+    <string name="text_basic_info" >Kami memerlukan beberapa informasi untuk menghitung kebutuhan kalori harian dan mengidentifikasi risiko diabetes Anda</string >
+    <string name="jenis_kelamin" >Pilih Jenis Kelamin</string >
+    <string name="usia" >Usia</string >
+    <string name="ukuran_tubuh" >Ukuran Tubuh</string >
+    <string name="lingkar_pinggang" >Lingkar Pingggang Anda</string >
+    <string name="male" >Laki-laki</string >
+    <string name="female" >Perempuan</string >
+    <string name="title_usia" >Usia Anda</string >
+    <string name="less_than_90" >Di bawah 90</string >
+    <string name="from_94_to_102" >90–102</string >
+    <string name="more_than_102" >Di atas 102</string >
+    <string name="in_cm" >*dalam cm</string >
+    <string name="next_basic_info" >Lanjutkan</string >
+    <string name="helper_input_usia" >*Masukkan angka bulat tanpa titik atau koma, cth: 22</string >
+    <string name="helper_input_tinggi" >*dalam cm</string >
+    <string name="input_tinggi" >Tinggi</string >
+    <string name="input_weight" >Berat</string >
+    <string name="headline_health_info" >Informasi Kesehatan Anda</string >
+    <string name="text_health_info" >Data ini membantu kami memahami risiko kesehatan Anda secara lebih akurat dan memberikan rekomendasi yang sesuai.</string >
+    <string name="darah_tinggi" >Apakah Anda memiliki riwayat tekanan darah tinggi?</string >
+    <string name="yes" >Iya</string >
+    <string name="no" >Tidak</string >
+    <string name="gula_darah" >Apakah Anda pernah didiagnosis dengan gula darah tinggi?</string >
+    <string name="diabetes" >Apakah ada anggota keluarga yang memiliki riwayat diabetes?</string >
+    <string name="headline_last_info" >Langkah Terakhir</string >
+    <string name="text_last_info" >Kami ingin memahami tingkat aktivitas Anda sehari-hari untuk memberikan rekomendasi yang lebih akurat</string >
+    <string name="daily_activity" >Tentukan Tingkat Aktivitas Harian Anda</string >
+    <string name="fruit_vegetables" >Seberapa rutin Anda mengkonsumsi buah dan sayur?</string >
+    <string name="everyday" >Setiap hari</string >
+    <string name="rare" >Jarang</string >
+    <string name="tingkatan_aktivitas" >
+        Pilihan Tingkat Aktivitas:\n1. Tidak Aktif\n2. Ringan\n3. Sedang\n4. Berat\n5. Sangat Berat
+    </string >
+    <string name="pilih_aktivitas" >Silakan pilih salah satu opsi yang paling sesuai dengan kondisi Anda melalui tombol di bawah ini.</string >
+    <string name="inactive" >Tidak Aktif</string >
+    <string name="ringan" >Ringan</string >
+    <string name="sedang" >Sedang</string >
+    <string name="berat" >Berat</string >
+    <string name="sangat_berat" >Sangat Berat</string >
+    <string name="title_activity_main" >MainActivity</string >
+    <string name="title_home" >Home</string >
+    <string name="title_scan" >Pindai</string >
+    <string name="title_article" >Artikel</string >
+    <string name="halo" >Halo,\u0020</string >
+    <string name="name" >Ilham</string >
+    <string name="text_profile" >Pantau asupan harian dengan mudah</string >
+    <string name="low_database_risk" >Risiko diabates rendah</string >
+    <string name="text_card_risk" >Pertahankan pola makan seimbang dan aktivitas fisik untuk menjaga kesehatan Anda.</string >
+    <string name="text_informasi_gizi" >Kebutuhan Kalori Harian (kkal)</string >
+    <string name="max_kalori" >2645</string >
+    <string name="catatan_kosong" >Catatan kosong</string >
+    <string name="belum_ada_catatan_apapun" >Belum ada catatan apapun</string >
+    <string name="catat_konsumsi" >Catat Konsumsi</string >
+    <string name="dari_2645" >dari 2645</string >
+    <string name="_174" >174</string >
+    <string name="dari_1455" >dari 1455</string >
+    <string name="_102" >102</string >
+    <string name="gula" >Gula</string >
+    <string name="dari_379" >dari 379</string >
+    <string name="_19" >19</string >
+    <string name="protein" >Protein</string >
+    <string name="lemak" >Lemak</string >
+    <string name="karbo" >Karbo</string >
+    <string name="not_found" >Oops! Kami belum dapat mendeteksi informasi makanan ini. Pastikan kemasan terlihat jelas dan pindai ulang.</string >
+    <string name="product_name" >Pocari Sweat 500 mL</string >
+    <string name="_120" >120</string >
+    <string name="_112" >112</string >
+    <string name="_0" >0</string >
+    <string name="risiko_diabetes_profile" >Berat badanmu ideal dengan risiko diabates rendah</string >
+    <string name="_167" >167</string >
+    <string name="text_tinggi" >Tinggi (cm)</string >
+    <string name="_56" >56</string >
+    <string name="text_berat" >Berat (kg)</string >
+    <string name="_20_6" >20,6</string >
+    <string name="text_indeks_bmi" >Indeks BMI</string >
+    <string name="_3" >3</string >
+    <string name="dari_20" >dari 20</string >
+    <string name="input_old_password" >Kata Sandi Sebelumnya</string >
+    <string name="header_article" >Artikel Pilihan untuk Hidup Lebih Sehat</string >
+    <string name="logout" >Logout</string >
+    <string name="title_premium" >Upgrade ke Premium</string >
+    <string name="text_upgrade" >Nikmati fitur eksklusif</string >
+    <string name="text_change_pass" >Perbarui kata sandi akun Anda</string >
+    <string name="title_change_pass" >Ganti Kata Sandi</string >
+
+    <string name="judul_article" >3 Cara Menghitung Kalori Harian Makanan</string >
+    <string name="sub_judul_article" >Cara Menghitung Kalori Harian pada Makanan yang Dikonsumsi</string >
+    <string name="tanggal_article" >22 Oktober 2021</string >
+    <string name="tinjau_article" >Ditinjau oleh dr. Fadhli Rizal Makarim</string >
+    <string name="data_article" >
+        Dengan memperhitungkan kebutuhan kalori harian dan memastikan semua asupan yang dikonsumsi tidak berlebih dapat menurunkan berat badan.\n
+        Terlebih jika dibarengi dengan aktivitas fisik yang tentu saja menyehatkan jasmani dan rohani.\n
+        Namun, tidak semua orang tahu cara menghitung kalori hariannya agar kelebihannya tidak bertumpuk.\n
+        \n
+        Sebelum itu, kamu perlu tahu rata-rata kalori yang dibutuhkan oleh tubuh.\n
+        Semua hal ini bisa tergantung pada banyak faktor, seperti usia, tinggi badan, berat badan, tingkat aktivitas, hingga metabolisme tubuh.\n
+        Perlu diketahui, untuk menurunkan berat badan, kamu harus mengurangi asupan sekitar 500 kalori yang dapat menurunkan berat badan 0,5 kg per minggu.\n
+        \n
+        Lalu, berapa rata-rata kalori yang dibutuhkan menurut jenis kelamin?\n
+        \n
+        Wanita: Untuk wanita dalam usia 26-50, kalori yang dibutuhkan per hari sekitar 2.000 dan mengurangi menjadi 1.500 kalori per hari dapat efektif untuk menurunkan berat badan.\n
+        Pria: Pria di usia 26-45 membutuhkan 2.600 kalori per hari agar tidak mengalami pertambahan bobot dan 2.100 kalori untuk menurunkannya setiap minggu.\n
+        \n
+        Angka tersebut dapat berbeda pada seseorang yang rutin melakukan aktivitas fisik.\n
+        Kamu butuh lebih banyak kalori jika berolahraga setiap hari agar tubuh tidak mudah lelah saat berkegiatan.\n
+        Tentunya angka yang lebih pasti bisa kamu ketahui dengan bertanya langsung pada dokter gizi.\n
+        \n
+        Sekarang, kamu perlu tahu beberapa cara menghitung kalori makanan harian yang masuk ke tubuh.\n
+        Berikut beberapa caranya:\n
+        \n
+        1. Catat Nutrisi yang Ada di Kemasan\n
+        Segala makanan yang dijual di supermarket diwajibkan untuk memberikan informasi nutrisi pada kemasannya.\n
+        Catatan ini dapat memberitahu kamu tentang semua hal yang terkandung di dalamnya, termasuk makronutrien utamanya.\n
+        Hal yang perlu kamu perhatikan adalah jumlah protein, karbohidrat, dan lemaknya.\n
+        Cara menghitung kalori makanan ini perlu diketahui semua orang agar angka pastinya diketahui.\n
+        Alkohol juga termasuk sumber kalori yang patut diperhitungkan.\n
+        \n
+        2. Hitung Jumlah Kalori yang Ada\n
+        Untuk mengetahui jumlah kalorinya, kamu perlu mengalikan setiap makronutrien yang ada dengan setara kalorinya.\n
+        Satu gram protein mengandung 4 kalori, lalu satu gram karbohidrat juga setara 4 kalori, dan satu gram lemak setara 9 kalori.\n
+        Nutrisi selalu diukur dengan gram, sehingga kamu perlu tahu cara menghitungnya sendiri.\n
+        Contoh, jika makanan kamu mengandung 10 gram protein, 15 gram karbohidrat, dan 15 gram lemak, maka perhitungannya adalah 10×4, 15×4, dan 15×9.\n
+        Hasil perkaliannya berturut-turut adalah 40, 60, dan 135.\n
+        Berarti total kalorinya adalah 235.\n
+        Angka ini harus sesuai dengan catatan di belakang kemasan.\n
+        Untuk itu, kamu perlu mencatatnya agar kalori yang masuk ke tubuh tidak berlebihan.\n
+        \n
+        3. Bandingkan Kalori Nutrisi dengan Kebutuhan Harian\n
+        Menurut ahli diet, 46-65% dari total kalori yang dikonsumsi setiap hari harus berasal dari karbohidrat, 10-35% dari protein, dan 20-25% dari lemak.\n
+        Kolom nilai harian yang direkomendasikan pada fakta nutrisi dapat menjelaskan berapa banyak proporsi yang didapatkan dari konsumsi makanan tersebut.\n
+        Contoh, camilan yang mengandung 35 gram karbohidrat dapat memberikan 12% dari kebutuhan harian yang sebesar 300 gram.\n
+    </string >
+    <string name="product_found" >Pocari Sweat 500 mL</string >
+    <string name="g_u0020" >"g "</string >
+    <string name="karbo_u0020" >"Karbo "</string >
+    <string name="_12" >12</string >
+    <string name="protein_u0020" >"| Protein "</string >
+    <string name="_2" >2</string >
+    <string name="lemak_u0020" >"| Lemak "</string >
+    <string name="_67" >67%</string >
+
 </resources >

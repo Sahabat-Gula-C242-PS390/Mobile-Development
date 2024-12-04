@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     //activity-ktx
     implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.annotation)
     //mockito
     testImplementation(libs.mockito.core)
     //mockito-inline
@@ -74,4 +75,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.runner)
     androidTestImplementation(libs.androidx.rules)
+
+    // cameraX
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
 }

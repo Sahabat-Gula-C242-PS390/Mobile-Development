@@ -7,6 +7,8 @@
     <color name="green_primary" >#086B5A</color >
     <color name="green_selected" >#CDE8DF</color >
     <color name="green_fill_risk" >#D8E9DB</color >
+    <color name="green_nav" >#E9EFEC</color >
+
 
     <color name="yellow_mid_risk" >#E8A701</color >
     <color name="yellow_fill_risk" >#F3EBD7</color >
@@ -21,5 +23,8 @@
     <color name="grey_text" >#3F4946</color >
     <color name="grey_text_2" >#06201A</color >
     <color name="grey_text_3" >#171D1B</color >
+
+
+
 
 </resources >
