@@ -199,6 +199,7 @@
                 tools:ignore="TextSizeCheck" >
 
                 <View
+                    android:id="@+id/view2"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/ic_karbo"
@@ -233,10 +234,11 @@
                     android:id="@+id/karbo_needed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:text="@string/dari_1455"
                     android:textColor="@color/grey_text_3"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view2"
                     app:layout_constraintTop_toBottomOf="@+id/karbo_consume" />
 
             </androidx.constraintlayout.widget.ConstraintLayout >
@@ -250,6 +252,7 @@
                 tools:ignore="TextSizeCheck" >
 
                 <View
+                    android:id="@+id/view3"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/ic_lemak"
@@ -284,10 +287,11 @@
                     android:id="@+id/lemak_needed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:text="@string/dari_1455"
                     android:textColor="@color/grey_text_3"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view3"
                     app:layout_constraintTop_toBottomOf="@+id/lemak_consume" />
 
             </androidx.constraintlayout.widget.ConstraintLayout >
@@ -301,6 +305,7 @@
                 tools:ignore="TextSizeCheck" >
 
                 <View
+                    android:id="@+id/view"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/ic_protein"
@@ -316,8 +321,8 @@
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/protein_consume"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -327,19 +332,20 @@
                     android:text="@string/_19"
                     android:textColor="@color/red_high_risk"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/protein_title"
+                    app:layout_constraintStart_toStartOf="@+id/protein_needed"
                     app:layout_constraintTop_toBottomOf="@+id/protein_title" />
 
                 <TextView
                     android:id="@+id/protein_needed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:text="@string/dari_379"
                     android:textColor="@color/grey_text_3"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/protein_title"
+                    app:layout_constraintStart_toEndOf="@+id/view"
                     app:layout_constraintTop_toBottomOf="@+id/protein_consume" />
 
             </androidx.constraintlayout.widget.ConstraintLayout >
@@ -353,6 +359,7 @@
                 tools:ignore="TextSizeCheck" >
 
                 <View
+                    android:id="@+id/view4"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:background="@drawable/ic_gula"
@@ -387,10 +394,11 @@
                     android:id="@+id/gula_needed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
                     android:text="@string/dari_1455"
                     android:textColor="@color/grey_text_3"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/view4"
                     app:layout_constraintTop_toBottomOf="@+id/gula_consume" />
 
             </androidx.constraintlayout.widget.ConstraintLayout >
@@ -476,20 +484,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/btn_catat_konsumsi"
+            app:layout_constraintEnd_toEndOf="@id/btn_catat_konsumsi"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/btn_catat_konsumsi"
-            app:layout_constraintEnd_toEndOf="@id/btn_catat_konsumsi">
+            app:layout_constraintTop_toBottomOf="@id/btn_catat_konsumsi" >
 
             <TextView
                 android:id="@+id/catatan_is_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="22dp"
+                android:drawableTop="@drawable/catatan_empty"
                 android:text="@string/belum_ada_catatan_apapun"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:layout_marginTop="22dp"
-                android:drawableTop="@drawable/catatan_empty"
-                android:layout_gravity="center"
                 android:visibility="visible"
                 tools:ignore="UseCompatTextViewDrawableXml" />
 
@@ -498,9 +507,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
-        </LinearLayout>
+        </LinearLayout >
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
