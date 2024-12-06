@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/basic_info_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/_padding_margin_16dp"
     android:background="@color/white"
-    tools:context=".ui.questionnaire.BasicInfoActivity" >
+    tools:context=".ui.questionnaire.BasicInfoFragment" >
 
     <TextView
         android:id="@+id/headline_basic_info"
@@ -120,17 +120,17 @@
 
 
     <TextView
-            android:id="@+id/ukuran_tubuh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:lineSpacingExtra="5sp"
-            android:text="@string/ukuran_tubuh"
-            android:textColor="@color/grey_text_3"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/input_usia"
-            app:layout_constraintTop_toBottomOf="@+id/input_usia" />
+        android:id="@+id/ukuran_tubuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:lineSpacingExtra="5sp"
+        android:text="@string/ukuran_tubuh"
+        android:textColor="@color/grey_text_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/input_usia"
+        app:layout_constraintTop_toBottomOf="@+id/input_usia" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/form_ukuran_tubuh"
@@ -187,17 +187,17 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-            android:id="@+id/lingkar_pinggang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:lineSpacingExtra="5sp"
-            android:text="@string/lingkar_pinggang"
-            android:textColor="@color/grey_text_3"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/form_ukuran_tubuh"
-            app:layout_constraintTop_toBottomOf="@+id/form_ukuran_tubuh" />
+        android:id="@+id/lingkar_pinggang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:lineSpacingExtra="5sp"
+        android:text="@string/lingkar_pinggang"
+        android:textColor="@color/grey_text_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/form_ukuran_tubuh"
+        app:layout_constraintTop_toBottomOf="@+id/form_ukuran_tubuh" />
 
 
     <com.google.android.material.button.MaterialButtonToggleGroup

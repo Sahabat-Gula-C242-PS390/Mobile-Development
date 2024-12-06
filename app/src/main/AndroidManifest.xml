@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -34,13 +32,10 @@
             android:exported="false"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".ui.questionnaire.BasicInfoActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.splashscreen.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity"
             android:exported="true" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />

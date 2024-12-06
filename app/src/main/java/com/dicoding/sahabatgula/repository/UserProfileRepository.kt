@@ -51,21 +51,21 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
         val userProfileItem = ListUserProfileItem(
             name = userProfile.name,
             email = userProfile.email,
-            password = userProfile.password,
-            gender = userProfile.gender,
-            umur = userProfile.umur,
-            berat = userProfile.berat,
-            tinggi = userProfile.tinggi,
-            lingkarPinggang = userProfile.lingkarPinggang,
-            tekananDarahTinggi = userProfile.tekananDarahTinggi,
-            gulaDarahTinggi = userProfile.gulaDarahTinggi,
-            tingkatAktivitas = userProfile.tingkatAktivitas,
-            konsumsiBuah = userProfile.konsumsiBuah,
-            gulaHarian = userProfile.gulaHarian,
-            kaloriHarian = userProfile.kaloriHarian,
-            karbohidratHarian = userProfile.karbohidratHarian,
-            lemakHarian = userProfile.lemakHarian,
-            proteinHarian = userProfile.proteinHarian
+            password = userProfile.password
+//            gender = userProfile.gender,
+//            umur = userProfile.umur,
+//            berat = userProfile.berat,
+//            tinggi = userProfile.tinggi,
+//            lingkarPinggang = userProfile.lingkarPinggang,
+//            tekananDarahTinggi = userProfile.tekananDarahTinggi,
+//            gulaDarahTinggi = userProfile.gulaDarahTinggi,
+//            tingkatAktivitas = userProfile.tingkatAktivitas,
+//            konsumsiBuah = userProfile.konsumsiBuah,
+//            gulaHarian = userProfile.gulaHarian,
+//            kaloriHarian = userProfile.kaloriHarian,
+//            karbohidratHarian = userProfile.karbohidratHarian,
+//            lemakHarian = userProfile.lemakHarian,
+//            proteinHarian = userProfile.proteinHarian
         )
 
         apiService.register(userProfileItem).enqueue(object:Callback<UserProfileResponse>{
