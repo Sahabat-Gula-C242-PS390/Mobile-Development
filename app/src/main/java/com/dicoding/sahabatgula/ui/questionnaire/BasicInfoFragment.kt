@@ -4,57 +4,124 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.dicoding.sahabatgula.R
+import com.dicoding.sahabatgula.data.local.entity.UserProfile
+import com.dicoding.sahabatgula.databinding.FragmentBasicInfoBinding
+import com.dicoding.sahabatgula.di.Injection
+import com.dicoding.sahabatgula.ui.auth.RegisterViewModel
+import com.dicoding.sahabatgula.ui.auth.RegisterViewModelFactory
+import com.google.android.material.button.MaterialButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [BasicInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BasicInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var binding: FragmentBasicInfoBinding
+    private val registerViewModel: RegisterViewModel by activityViewModels {
+        RegisterViewModelFactory(Injection.provideRepository(requireContext()))
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_basic_info, container, false)
+
+
+
+        binding = FragmentBasicInfoBinding.inflate(layoutInflater, container, false)
+        return binding.root
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BasicInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BasicInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val btnMale = binding.male
+        val btnFemale = binding.female
+        val btnlingkarpinggang_1 = binding.lessThan90
+        val btnlingkarpinggang_2 = binding.from90To102
+        val btnlingkarpinggang_3 = binding.moreThan102
+
+        val genderButtons = listOf(btnMale, btnFemale)
+        val lingkarPinggangButtons = listOf(btnlingkarpinggang_1, btnlingkarpinggang_2, btnlingkarpinggang_3)
+
+        // gender
+        btnMale.setOnClickListener{
+            selectButton(btnMale, genderButtons)
+        }
+        btnFemale.setOnClickListener{
+            selectButton(btnFemale, genderButtons)
+        }
+
+        // lingkar pinggang
+        btnlingkarpinggang_1.setOnClickListener{
+            selectButton(btnlingkarpinggang_1, lingkarPinggangButtons)
+        }
+        btnlingkarpinggang_2.setOnClickListener{
+            selectButton(btnlingkarpinggang_2, lingkarPinggangButtons)
+        }
+        btnlingkarpinggang_3.setOnClickListener{
+            selectButton(btnlingkarpinggang_3, lingkarPinggangButtons)
+        }
+
+        val btnNextBasicInfo = binding.btnNextBasicInfo
+        btnNextBasicInfo.setOnClickListener {
+
+            val umur = binding.editInputUsia.text.toString().toInt()
+            val berat = binding.editInputBerat.text.toString().toInt()
+            val tinggi = binding.editInputTinggi.text.toString().toInt()
+            val gender = if (btnMale.isSelected) "male" else "female"
+            val lingkarPinggang = when {
+                btnlingkarpinggang_1.isSelected -> "small"
+                btnlingkarpinggang_2.isSelected -> "medium"
+                btnlingkarpinggang_3.isSelected -> "large"
+                else -> { Toast.makeText(requireContext(), "Pilih ukuran lingkar pinggang", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
             }
+
+
+            val partialProfile = UserProfile(
+//                id = SharedPreferencesHelper.getUserId(requireContext()),
+                umur = umur,
+                berat = berat,
+                tinggi = tinggi,
+                gender = gender,
+                lingkarPinggang = lingkarPinggang
+            )
+
+
+
+            // menyimpan data ke view model
+            registerViewModel.updateUserProfile(partialProfile)
+            registerViewModel.saveToDatabase(partialProfile)
+
+            // lanjut ke halaman selanjutnya
+            moveToNextFragment()
+        }
     }
+
+    private fun moveToNextFragment() {
+        val nextFragment = HealthInfoFragment()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.add(R.id.activity_login, nextFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun selectButton(selectedButton: MaterialButton, buttons: List<MaterialButton>) {
+
+        for (button in buttons) {
+            if(button == selectedButton) {
+                button.isSelected = true
+                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green_selected))
+            } else {
+                button.isSelected = false
+                button.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+            }
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.dicoding.sahabatgula.repository
 
+import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.data.local.room.UserProfileDao
@@ -51,21 +52,22 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
         val userProfileItem = ListUserProfileItem(
             name = userProfile.name,
             email = userProfile.email,
-            password = userProfile.password
-//            gender = userProfile.gender,
-//            umur = userProfile.umur,
-//            berat = userProfile.berat,
-//            tinggi = userProfile.tinggi,
-//            lingkarPinggang = userProfile.lingkarPinggang,
-//            tekananDarahTinggi = userProfile.tekananDarahTinggi,
-//            gulaDarahTinggi = userProfile.gulaDarahTinggi,
-//            tingkatAktivitas = userProfile.tingkatAktivitas,
-//            konsumsiBuah = userProfile.konsumsiBuah,
-//            gulaHarian = userProfile.gulaHarian,
-//            kaloriHarian = userProfile.kaloriHarian,
-//            karbohidratHarian = userProfile.karbohidratHarian,
-//            lemakHarian = userProfile.lemakHarian,
-//            proteinHarian = userProfile.proteinHarian
+            password = userProfile.password,
+            gender = userProfile.gender,
+            umur = userProfile.umur,
+            berat = userProfile.berat,
+            tinggi = userProfile.tinggi,
+            lingkarPinggang = userProfile.lingkarPinggang,
+            riwayatDiabetes = userProfile.riwayatDiabetes == 1,
+            tekananDarahTinggi = userProfile.tekananDarahTinggi == 1,
+            gulaDarahTinggi = userProfile.gulaDarahTinggi == 1,
+            tingkatAktivitas = userProfile.tingkatAktivitas,
+            konsumsiBuah = userProfile.konsumsiBuah == 1,
+            gulaHarian = userProfile.gulaHarian,
+            kaloriHarian = userProfile.kaloriHarian,
+            karbohidratHarian = userProfile.karbohidratHarian,
+            lemakHarian = userProfile.lemakHarian,
+            proteinHarian = userProfile.proteinHarian
         )
 
         apiService.register(userProfileItem).enqueue(object:Callback<UserProfileResponse>{
@@ -75,10 +77,14 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
             ) {
                 if (response.isSuccessful) {
                     onResponse(response.body())
+                } else {
+                    Log.e("API_ERROR", "Server error: ${response.code()} ${response.message()}")
+                    onResponse(null)
                 }
             }
 
             override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+                Log.e("API_ERROR", "Failed to register user profile: ${t.message}")
                 onResponse(null)
             }
         })

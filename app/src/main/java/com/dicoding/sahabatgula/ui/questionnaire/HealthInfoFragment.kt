@@ -4,57 +4,107 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.dicoding.sahabatgula.R
+import com.dicoding.sahabatgula.data.local.entity.UserProfile
+import com.dicoding.sahabatgula.databinding.FragmentHealthInfoBinding
+import com.dicoding.sahabatgula.di.Injection
+import com.dicoding.sahabatgula.ui.auth.RegisterViewModel
+import com.dicoding.sahabatgula.ui.auth.RegisterViewModelFactory
+import com.google.android.material.button.MaterialButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HealthInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HealthInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var binding: FragmentHealthInfoBinding
+    private val registerViewModel: RegisterViewModel by activityViewModels {
+        RegisterViewModelFactory(Injection.provideRepository(requireContext()))
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_health_info, container, false)
+
+
+
+        binding = FragmentHealthInfoBinding.inflate(layoutInflater,container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HealthInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HealthInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val btnYesDarahTinggi = binding.yesDarahTinggi
+        val btnNoDarahTinggi = binding.noDarahTinggi
+
+        val btnYesGulaDarah = binding.yesGulaDarah
+        val btnNoGulaDarah = binding.noGulaDarah
+
+        val btnYesDiabetes = binding.yesDiabetes
+        val btnNoDiabetes = binding.noDiabetes
+
+        btnYesDarahTinggi.setOnClickListener{
+            selectButton(btnYesDarahTinggi, btnNoDarahTinggi)
+        }
+
+        btnNoDarahTinggi.setOnClickListener{
+            selectButton(btnNoDarahTinggi, btnYesDarahTinggi)
+        }
+
+        btnYesDiabetes.setOnClickListener{
+            selectButton(btnYesDiabetes, btnNoDiabetes)
+        }
+
+        btnNoDiabetes.setOnClickListener{
+            selectButton(btnNoDiabetes, btnYesDiabetes)
+        }
+
+        btnYesGulaDarah.setOnClickListener{
+            selectButton(btnYesGulaDarah, btnNoGulaDarah)
+        }
+
+        btnNoGulaDarah.setOnClickListener{
+            selectButton(btnNoGulaDarah, btnYesGulaDarah)
+        }
+
+        val btnNextHealthInfo = binding.btnNextHealthInfo
+        btnNextHealthInfo.setOnClickListener {
+            val diabetes = if (btnYesDiabetes.isSelected) 1 else 0
+            val gulaDarah = if (btnYesGulaDarah.isSelected) 1 else 0
+            val darahTinggi = if (btnYesDarahTinggi.isSelected) 1 else 0
+
+
+            val partialProfile = UserProfile(
+//                id = SharedPreferencesHelper.getUserId(requireContext()),
+                riwayatDiabetes = diabetes,
+                gulaDarahTinggi = gulaDarah,
+                tekananDarahTinggi = darahTinggi
+            )
+
+            registerViewModel.updateUserProfile(partialProfile)
+            registerViewModel.saveToDatabase(partialProfile)
+
+            moveToNextFragment()
+        }
+
     }
+
+    private fun moveToNextFragment() {
+        val nextFragment = LastInfoFragment()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.add(R.id.activity_login, nextFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
+    private fun selectButton(selectedButton: MaterialButton, unSelectedButton: MaterialButton) {
+        selectedButton.isSelected = true
+        selectedButton.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green_selected))
+        unSelectedButton.isSelected = false
+        unSelectedButton.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.white))
+    }
+
 }

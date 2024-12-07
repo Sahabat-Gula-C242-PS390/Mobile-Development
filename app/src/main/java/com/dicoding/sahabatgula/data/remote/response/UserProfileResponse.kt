@@ -32,7 +32,7 @@ data class ListUserProfileItem(
 	val gender: String? = null,
 
 	@field:SerializedName("berat")
-	val berat: Int = 0,
+	val berat: Int? = 0,
 
 	@field:SerializedName("tinggi")
 	val tinggi: Int? = null,
