@@ -12,4 +12,9 @@ interface ApiService {
     fun register(
         @Body request: ListUserProfileItem
     ): Call<UserProfileResponse>
+
+    @POST("auth/login")
+    fun login(
+        @Body requestLogin: ListUserProfileItem
+    ): Call<UserProfileResponse>
 }

@@ -7,11 +7,15 @@ import com.dicoding.sahabatgula.data.local.room.UserProfileDao
 import com.dicoding.sahabatgula.data.remote.response.ListUserProfileItem
 import com.dicoding.sahabatgula.data.remote.response.UserProfileResponse
 import com.dicoding.sahabatgula.data.remote.retrofit.ApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserProfileRepository (private val userProfileDao: UserProfileDao, private val apiService: ApiService) {
+
 
     // di bawah ini berkaitan dengan database lokal, tujuannya untuk akses offline
 
@@ -77,6 +81,15 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
             ) {
                 if (response.isSuccessful) {
                     onResponse(response.body())
+                    // panggil id di api
+                    val id: String? = response.body()?.userId
+                    if (id != null) {
+                        userProfile.id = id
+                        GlobalScope.launch(Dispatchers.IO) {
+                            insertUserProfile(userProfile)
+                        }
+                    }
+                    Log.d("INSERT_ID_FROM_API_TO_ROOM", "Id User at Room database: ${userProfile.id}")
                 } else {
                     Log.e("API_ERROR", "Server error: ${response.code()} ${response.message()}")
                     onResponse(null)

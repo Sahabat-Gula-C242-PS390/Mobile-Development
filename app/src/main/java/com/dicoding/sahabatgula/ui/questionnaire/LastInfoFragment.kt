@@ -100,7 +100,7 @@ class LastInfoFragment : Fragment() {
             if (userProfile != null) {
                 registerViewModel.saveToDatabase(userProfile)
                 registerViewModel.registerUserProfileToRemote(userProfile) { response ->
-                    if (response?.status == "success") {
+                    if (response?.error == false && response.status == "success") {
                         Toast.makeText(context, "Data berhasil dikirim!", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "Gagal mengirim data.", Toast.LENGTH_SHORT).show()
@@ -110,6 +110,8 @@ class LastInfoFragment : Fragment() {
 
         }
     }
+
+
 
     private fun selectButton(selectedButton: MaterialButton, buttons: List<MaterialButton>) {
 

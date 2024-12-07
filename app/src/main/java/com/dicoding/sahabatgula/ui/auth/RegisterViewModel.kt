@@ -21,6 +21,7 @@ class RegisterViewModel(private val userProfileRepository: UserProfileRepository
         Log.d("RegisterViewModel", "Updating user profile with data: $partialProfile")
         val currentProfile = _userProfile.value ?: UserProfile(id = partialProfile.id)
         _userProfile.value = currentProfile.copy(
+            id = partialProfile.id,
             name = partialProfile.name.takeIf { it!!.isNotBlank() } ?: currentProfile.name,
             email = partialProfile.email.takeIf { it!!.isNotBlank() } ?: currentProfile.email,
             password = partialProfile.password.takeIf { it!!.isNotBlank() } ?: currentProfile.password,

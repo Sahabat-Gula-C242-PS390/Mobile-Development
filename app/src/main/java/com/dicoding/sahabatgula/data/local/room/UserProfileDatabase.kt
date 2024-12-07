@@ -1,6 +1,7 @@
 package com.dicoding.sahabatgula.data.local.room
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -29,8 +30,11 @@ abstract class UserProfileDatabase: RoomDatabase() {
                     context.applicationContext,
                     UserProfileDatabase::class.java, // kelas databasenya
                     "user_profile_database"
+
                 ).addMigrations(DatabaseMigration.MIGRATION_1_2)
+                    .fallbackToDestructiveMigration()
                     .build() // build database
+                Log.d("DatabaseCheck", "Database is open: ${instance.isOpen}")
                 INSTANCE = instance
                 instance
             }
