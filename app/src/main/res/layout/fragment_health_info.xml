@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="@dimen/_padding_margin_16dp"
     tools:context=".ui.questionnaire.HealthInfoFragment" >
 
     <TextView
@@ -47,22 +46,23 @@
         app:layout_constraintStart_toStartOf="@+id/text_health_info"
         app:layout_constraintTop_toBottomOf="@+id/text_health_info" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <GridLayout
         android:id="@+id/darah_tinggi_toggle_group"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/darah_tinggi"
-        app:layout_constraintTop_toBottomOf="@+id/darah_tinggi"
+        android:columnCount="2"
+        android:rowCount="1"
+        app:layout_constraintStart_toStartOf="@id/darah_tinggi"
+        app:layout_constraintTop_toBottomOf="@id/darah_tinggi"
         app:selectionRequired="true"
-        app:singleSelection="true"
-        tools:ignore="TextSizeCheck" >
+        app:singleSelection="true" >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/yes_darah_tinggi"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/yes"
             android:textColor="@color/green_primary"
@@ -70,13 +70,12 @@
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp"
-            tools:ignore="DuplicateSpeakableTextCheck" />
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/no_darah_tinggi"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:backgroundTint="@android:color/white"
             android:text="@string/no"
             android:textColor="@color/green_primary"
@@ -84,8 +83,8 @@
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-    </com.google.android.material.button.MaterialButtonToggleGroup >
+            tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+    </GridLayout >
 
     <TextView
         android:id="@+id/gula_darah"
@@ -100,43 +99,45 @@
         app:layout_constraintStart_toStartOf="@+id/darah_tinggi_toggle_group"
         app:layout_constraintTop_toBottomOf="@+id/darah_tinggi_toggle_group" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <GridLayout
         android:id="@+id/gula_darah_toggle_group"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/gula_darah"
-        app:layout_constraintTop_toBottomOf="@+id/gula_darah"
+        android:columnCount="2"
+        android:rowCount="1"
+        app:layout_constraintStart_toStartOf="@id/gula_darah"
+        app:layout_constraintTop_toBottomOf="@id/gula_darah"
         app:selectionRequired="true"
-        app:singleSelection="true"
-        tools:ignore="TextSizeCheck" >
+        app:singleSelection="true" >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/yes_gula_darah"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/yes"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/no_gula_darah"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:backgroundTint="@android:color/white"
             android:text="@string/no"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
-    </com.google.android.material.button.MaterialButtonToggleGroup >
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </GridLayout >
 
     <TextView
         android:id="@+id/diabetes"
@@ -151,43 +152,45 @@
         app:layout_constraintStart_toStartOf="@+id/gula_darah_toggle_group"
         app:layout_constraintTop_toBottomOf="@+id/gula_darah_toggle_group" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <GridLayout
         android:id="@+id/diabetes_toggle_group"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/diabetes"
-        app:layout_constraintTop_toBottomOf="@+id/diabetes"
+        android:columnCount="2"
+        android:rowCount="1"
+        app:layout_constraintStart_toStartOf="@id/diabetes"
+        app:layout_constraintTop_toBottomOf="@id/diabetes"
         app:selectionRequired="true"
-        app:singleSelection="true"
-        tools:ignore="TextSizeCheck" >
+        app:singleSelection="true" >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/yes_diabetes"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/yes"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/no_diabetes"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:backgroundTint="@android:color/white"
             android:text="@string/no"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
-    </com.google.android.material.button.MaterialButtonToggleGroup >
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </GridLayout >
 
     <Button
         android:id="@+id/btn_next_health_info"

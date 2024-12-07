@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/basic_info_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/_padding_margin_16dp"
     android:background="@color/white"
-    tools:context=".ui.questionnaire.BasicInfoActivity" >
+    tools:context=".ui.questionnaire.BasicInfoFragment" >
 
     <TextView
         android:id="@+id/headline_basic_info"
@@ -48,43 +47,49 @@
         app:layout_constraintStart_toStartOf="@+id/text_basic_info"
         app:layout_constraintTop_toBottomOf="@+id/text_basic_info" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <GridLayout
         android:id="@+id/gender_toggle_group"
         android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/jenis_kelamin"
-        app:layout_constraintTop_toBottomOf="@+id/jenis_kelamin"
+        android:columnCount="2"
+        android:rowCount="1"
+        app:layout_constraintStart_toStartOf="@id/jenis_kelamin"
+        app:layout_constraintTop_toBottomOf="@id/jenis_kelamin"
         app:selectionRequired="true"
         app:singleSelection="true"
         tools:ignore="TextSizeCheck" >
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_male"
-            android:layout_width="0dp"
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/male"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_female"
-            android:layout_width="0dp"
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:backgroundTint="@android:color/white"
             android:text="@string/female"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
-    </com.google.android.material.button.MaterialButtonToggleGroup >
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </GridLayout >
 
     <TextView
         android:id="@+id/usia"
@@ -111,6 +116,7 @@
         app:layout_constraintTop_toBottomOf="@id/usia">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_input_usia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -120,17 +126,17 @@
 
 
     <TextView
-            android:id="@+id/ukuran_tubuh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:lineSpacingExtra="5sp"
-            android:text="@string/ukuran_tubuh"
-            android:textColor="@color/grey_text_3"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/input_usia"
-            app:layout_constraintTop_toBottomOf="@+id/input_usia" />
+        android:id="@+id/ukuran_tubuh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:lineSpacingExtra="5sp"
+        android:text="@string/ukuran_tubuh"
+        android:textColor="@color/grey_text_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/input_usia"
+        app:layout_constraintTop_toBottomOf="@+id/input_usia" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/form_ukuran_tubuh"
@@ -155,6 +161,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_input_berat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -177,6 +184,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_input_tinggi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -187,24 +195,25 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-            android:id="@+id/lingkar_pinggang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:lineSpacingExtra="5sp"
-            android:text="@string/lingkar_pinggang"
-            android:textColor="@color/grey_text_3"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/form_ukuran_tubuh"
-            app:layout_constraintTop_toBottomOf="@+id/form_ukuran_tubuh" />
+        android:id="@+id/lingkar_pinggang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:lineSpacingExtra="5sp"
+        android:text="@string/lingkar_pinggang"
+        android:textColor="@color/grey_text_3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/form_ukuran_tubuh"
+        app:layout_constraintTop_toBottomOf="@+id/form_ukuran_tubuh" />
 
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <GridLayout
         android:id="@+id/lingkar_pingang_toggle_group"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:columnCount="2"
+        android:rowCount="2"
         app:layout_constraintStart_toStartOf="@+id/lingkar_pinggang"
         app:layout_constraintTop_toBottomOf="@+id/lingkar_pinggang"
         app:selectionRequired="true"
@@ -212,9 +221,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/less_than_90"
-            android:layout_width="32dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/less_than_90"
             android:textColor="@color/green_primary"
@@ -222,49 +233,39 @@
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp"
-            tools:ignore="VisualLintButtonSize" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/from_94_to_102"
-            android:layout_width="2dp"
+            android:id="@+id/from_90_to_102"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="4dp"
             android:backgroundTint="@android:color/white"
-            android:text="@string/from_94_to_102"
+            android:text="@string/from_90_to_102"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp"
-            tools:ignore="VisualLintButtonSize" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/more_than_102"
-            android:layout_width="26dp"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_columnWeight="1"
             android:backgroundTint="@android:color/white"
+            android:layout_marginEnd="12dp"
             android:text="@string/more_than_102"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp"
-            tools:ignore="VisualLintButtonSize" />
-    </com.google.android.material.button.MaterialButtonToggleGroup >
+            tools:ignore="TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/helper_text_lingkar_pinggang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="1dp"
-        android:text="@string/in_cm"
-        android:textColor="@color/grey_text"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@id/lingkar_pingang_toggle_group"
-        app:layout_constraintTop_toBottomOf="@id/lingkar_pingang_toggle_group" />
-
+    </GridLayout >
 
     <Button
         android:id="@+id/btn_next_basic_info"
@@ -277,7 +278,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/helper_text_lingkar_pinggang"
+        app:layout_constraintTop_toBottomOf="@+id/lingkar_pingang_toggle_group"
         tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout >

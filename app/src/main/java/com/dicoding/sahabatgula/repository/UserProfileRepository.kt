@@ -1,5 +1,6 @@
 package com.dicoding.sahabatgula.repository
 
+import android.util.Log
 import androidx.lifecycle.MediatorLiveData
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.data.local.room.UserProfileDao
@@ -57,10 +58,11 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
             berat = userProfile.berat,
             tinggi = userProfile.tinggi,
             lingkarPinggang = userProfile.lingkarPinggang,
-            tekananDarahTinggi = userProfile.tekananDarahTinggi,
-            gulaDarahTinggi = userProfile.gulaDarahTinggi,
+            riwayatDiabetes = userProfile.riwayatDiabetes == 1,
+            tekananDarahTinggi = userProfile.tekananDarahTinggi == 1,
+            gulaDarahTinggi = userProfile.gulaDarahTinggi == 1,
             tingkatAktivitas = userProfile.tingkatAktivitas,
-            konsumsiBuah = userProfile.konsumsiBuah,
+            konsumsiBuah = userProfile.konsumsiBuah == 1,
             gulaHarian = userProfile.gulaHarian,
             kaloriHarian = userProfile.kaloriHarian,
             karbohidratHarian = userProfile.karbohidratHarian,
@@ -75,10 +77,14 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
             ) {
                 if (response.isSuccessful) {
                     onResponse(response.body())
+                } else {
+                    Log.e("API_ERROR", "Server error: ${response.code()} ${response.message()}")
+                    onResponse(null)
                 }
             }
 
             override fun onFailure(call: Call<UserProfileResponse>, t: Throwable) {
+                Log.e("API_ERROR", "Failed to register user profile: ${t.message}")
                 onResponse(null)
             }
         })

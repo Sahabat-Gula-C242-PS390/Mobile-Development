@@ -41,9 +41,9 @@
     <string name="male" >Laki-laki</string >
     <string name="female" >Perempuan</string >
     <string name="title_usia" >Usia Anda</string >
-    <string name="less_than_90" >Di bawah 90</string >
-    <string name="from_94_to_102" >90–102</string >
-    <string name="more_than_102" >Di atas 102</string >
+    <string name="less_than_90" >Di bawah 90 cm</string >
+    <string name="from_90_to_102" >90–102 cm</string >
+    <string name="more_than_102" >Di atas 102 cm</string >
     <string name="in_cm" >*dalam cm</string >
     <string name="next_basic_info" >Lanjutkan</string >
     <string name="helper_input_usia" >*Masukkan angka bulat tanpa titik atau koma, cth: 22</string >
