@@ -5,9 +5,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 object DatabaseMigration {
     val MIGRATION_1_2 = object : Migration(1, 2) {
-        override fun migrate(database: SupportSQLiteDatabase) {
+        override fun migrate(db: SupportSQLiteDatabase) {
             // Buat tabel baru dengan definisi terbaru
-            database.execSQL(
+            db.execSQL(
                 """
             CREATE TABLE IF NOT EXISTS UserProfile_new (
                 id TEXT DEFAULT '' NOT NULL PRIMARY KEY,
@@ -34,7 +34,7 @@ object DatabaseMigration {
             )
 
             // Salin data dari tabel lama ke tabel baru
-            database.execSQL(
+            db.execSQL(
                 """
             INSERT INTO UserProfile_new (
                 id, name, email, password, umur, berat, tinggi, gender, lingkarPinggang,
@@ -50,10 +50,10 @@ object DatabaseMigration {
             )
 
             // Hapus tabel lama
-            database.execSQL("DROP TABLE UserProfile")
+            db.execSQL("DROP TABLE UserProfile")
 
             // Ganti nama tabel baru menjadi tabel lama
-            database.execSQL("ALTER TABLE UserProfile_new RENAME TO UserProfile")
+            db.execSQL("ALTER TABLE UserProfile_new RENAME TO UserProfile")
         }
     }
 

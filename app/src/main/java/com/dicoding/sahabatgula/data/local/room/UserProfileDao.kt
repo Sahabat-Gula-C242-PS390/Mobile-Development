@@ -16,7 +16,11 @@ interface UserProfileDao {
 
     // get data userProfile by id
     @Query("SELECT * FROM UserProfile WHERE id = :id")
-    suspend fun getUserProfile(id: Long): UserProfile
+    suspend fun getUserProfile(id: String): UserProfile
+
+    // get data userProfile by email
+    @Query("SELECT * FROM UserProfile WHERE email = :email")
+    suspend fun getUserProfilebyEmail(email: String): UserProfile
 
     // get semua data user
     @Query("SELECT * FROM UserProfile")

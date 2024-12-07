@@ -1,6 +1,7 @@
 package com.dicoding.sahabatgula.ui.questionnaire
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -89,7 +90,7 @@ class LastInfoFragment : Fragment() {
 
 
             val partialProfile = UserProfile(
-//                id = SharedPreferencesHelper.getUserId(requireContext()),
+
                 tingkatAktivitas = dailyActivity,
                 konsumsiBuah = fruitVegetables
             )
@@ -100,8 +101,9 @@ class LastInfoFragment : Fragment() {
             if (userProfile != null) {
                 registerViewModel.saveToDatabase(userProfile)
                 registerViewModel.registerUserProfileToRemote(userProfile) { response ->
-                    if (response?.error == false && response.status == "success") {
+                    if (response?.status == "success") {
                         Toast.makeText(context, "Data berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                        Log.d("ID_AT_ROOM", "Id User at Room database: ${userProfile.id}")
                     } else {
                         Toast.makeText(context, "Gagal mengirim data.", Toast.LENGTH_SHORT).show()
                     }
@@ -109,6 +111,8 @@ class LastInfoFragment : Fragment() {
             }
 
         }
+
+
     }
 
 
