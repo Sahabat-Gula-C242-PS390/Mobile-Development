@@ -16,7 +16,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
     private val profileViewModel by viewModels<ProfileViewModel> {
-        ProfileViewModelFactory(Injection.provideRepository(this)) // Factory untuk ViewModel
+        ProfileViewModelFactory(Injection.provideRepository(this))
     }
     private lateinit var binding: ActivityProfileBinding
 
@@ -27,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setActionBar()
-        getAndPostDataUser()
+        getDataUser()
     }
 
     private fun setActionBar() {
@@ -53,19 +53,23 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun getAndPostDataUser() {
+    private fun getDataUser() {
         val userId = SharedPreferencesHelper.getCurrentUserId(this)
         Log.d("ID_SEKARANG", "Id User at Profile: $userId")
 
         if (!userId.isNullOrEmpty()) {
             profileViewModel.fetchUserProfile(userId)
-            profileViewModel.dataUser.observe(this) { dataUser ->
-                dataUser?.let {
-                    setUserData(it)
-                }
-            }
+            observeViewModel()
         } else {
             Log.e("ID_SEKARANG", "User ID is null or empty.")
+        }
+    }
+
+    private fun observeViewModel() {
+        profileViewModel.dataUser.observe(this) { dataUser ->
+            dataUser?.let {
+                setUserData(it)
+            }
         }
     }
 

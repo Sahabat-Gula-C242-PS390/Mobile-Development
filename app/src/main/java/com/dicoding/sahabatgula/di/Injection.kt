@@ -13,4 +13,5 @@ object Injection {
         return UserProfileRepository.getInstance(dao, apiService, context)
 
     }
+
 }

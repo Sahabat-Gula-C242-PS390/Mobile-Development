@@ -22,13 +22,8 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
     // di bawah ini berkaitan dengan database lokal, tujuannya untuk akses offline
 
     // mengambil data profil pengguna berdasarkan id
-    suspend fun getUserProfile(id: String): UserProfile {
+    suspend fun getUserProfileByIdFromDao(id: String): UserProfile {
         return userProfileDao.getUserProfile(id)
-    }
-
-    // mengambil semua data pengguna
-    suspend fun getAllUserProfile(): List<UserProfile> {
-        return userProfileDao.getAllUserProfile()
     }
 
     // menyimpan data profil pengguna
