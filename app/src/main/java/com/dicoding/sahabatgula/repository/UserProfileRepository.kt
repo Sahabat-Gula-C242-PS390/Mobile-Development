@@ -160,6 +160,42 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
         }
     }
 
+    suspend fun getUserProfileFromApi(userId: String?): Result<UserProfile> {
+        return try {
+            val response = apiService.getDataUser(userId)
+            if (response.isSuccessful) {
+                val userItem = response.body()?.data
+                val userProfile = response.body()?.data?.let{
+                    UserProfile(
+                        id = userItem?.userId.toString(),
+                        name = userItem?.name,
+                        email = userItem?.email,
+                        umur = userItem?.umur,
+                        berat = userItem?.berat,
+                        tinggi = userItem?.tinggi,
+                        gender = userItem?.gender,
+                        lingkarPinggang = userItem?.lingkarPinggang,
+                        riwayatDiabetes = if (userItem?.riwayatDiabetes == true) 1 else 0,
+                        gulaDarahTinggi = if (userItem?.gulaDarahTinggi == true) 1 else 0,
+                        tekananDarahTinggi = if (userItem?.tekananDarahTinggi == true) 1 else 0,
+                        tingkatAktivitas = userItem?.tingkatAktivitas,
+                        konsumsiBuah = if (userItem?.konsumsiBuah == true) 1 else 0,
+                        kaloriHarian = userItem?.kaloriHarian ?: 0,
+                        karbohidratHarian = userItem?.karbohidratHarian ?: 0,
+                        proteinHarian = userItem?.proteinHarian ?: 0,
+                        lemakHarian = userItem?.lemakHarian ?: 0,
+                        gulaHarian = userItem?.gulaHarian ?: 0
+                    )
+                }
+                Result.success(userProfile!!)
+            } else {
+                Result.failure(Exception("API ERROR: ${response.code()} ${response.message()}"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     companion object {
         @SuppressLint("StaticFieldLeak")
         @Volatile

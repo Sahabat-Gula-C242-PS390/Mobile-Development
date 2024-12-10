@@ -1,14 +1,15 @@
 package com.dicoding.sahabatgula.ui.navigation_ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.dicoding.sahabatgula.R
 import com.dicoding.sahabatgula.databinding.FragmentHomeBinding
-import com.dicoding.sahabatgula.ui.profile.ProfileFragment
+import com.dicoding.sahabatgula.ui.profile.ProfileActivity
 
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
 
@@ -26,11 +27,10 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.appCompatImageView.setOnClickListener {
-            val nextFragment = ProfileFragment()
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container, nextFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            Intent(requireContext(), ProfileActivity::class.java).also {
+                startActivity(it)
+                requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            }
         }
     }
 

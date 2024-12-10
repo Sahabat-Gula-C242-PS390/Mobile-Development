@@ -22,7 +22,7 @@ interface ApiService {
     ): Response<UserProfileResponse>
 
     @GET("/user/{userId}")
-    fun getDataUser(
-        @Path("userId") userId: String = ""
+    suspend fun getDataUser(
+        @Path("userId") userId: String? = ""
     ): Response<UserProfileResponse>
 }

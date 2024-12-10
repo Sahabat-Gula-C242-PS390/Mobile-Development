@@ -12,6 +12,7 @@ import com.dicoding.sahabatgula.R
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.databinding.FragmentBasicInfoBinding
 import com.dicoding.sahabatgula.di.Injection
+import com.dicoding.sahabatgula.ui.auth.RegisterFragment
 import com.dicoding.sahabatgula.ui.auth.RegisterViewModel
 import com.dicoding.sahabatgula.ui.auth.RegisterViewModelFactory
 import com.google.android.material.button.MaterialButton
@@ -102,7 +103,9 @@ class BasicInfoFragment : Fragment() {
 
     private fun moveToNextFragment() {
         val nextFragment = HealthInfoFragment()
+        val oldFragment = RegisterFragment()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.hide(oldFragment)
         transaction.add(R.id.activity_login, nextFragment)
         transaction.addToBackStack(null)
         transaction.commit()

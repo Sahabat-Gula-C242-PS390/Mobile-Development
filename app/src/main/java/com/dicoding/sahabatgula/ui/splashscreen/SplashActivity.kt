@@ -18,6 +18,8 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash)
 
+        supportActionBar?.hide()
+
         Handler(Looper.getMainLooper()).postDelayed({
             gotoLoginFragment()
         }, 3000L)

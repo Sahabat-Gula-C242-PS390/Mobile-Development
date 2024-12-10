@@ -94,7 +94,9 @@ class HealthInfoFragment : Fragment() {
 
     private fun moveToNextFragment() {
         val nextFragment = LastInfoFragment()
+        val oldFragment = BasicInfoFragment()
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.hide(oldFragment)
         transaction.add(R.id.activity_login, nextFragment)
         transaction.addToBackStack(null)
         transaction.commit()

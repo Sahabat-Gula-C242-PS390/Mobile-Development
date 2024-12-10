@@ -32,7 +32,6 @@ abstract class UserProfileDatabase: RoomDatabase() {
                     "user_profile_database"
 
                 ).addMigrations(DatabaseMigration.MIGRATION_1_2)
-                    .allowMainThreadQueries()
                     .build() // build database
                 Log.d("DatabaseCheck", "Database is open: ${instance.isOpen}")
                 INSTANCE = instance
