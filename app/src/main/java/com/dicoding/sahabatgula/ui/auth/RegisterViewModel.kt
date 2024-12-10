@@ -1,5 +1,6 @@
 package com.dicoding.sahabatgula.ui.auth
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +22,7 @@ class RegisterViewModel(private val userProfileRepository: UserProfileRepository
         Log.d("RegisterViewModel", "Updating user profile with data: $partialProfile")
         val currentProfile = _userProfile.value ?: UserProfile(id = partialProfile.id)
         _userProfile.value = currentProfile.copy(
+            id = partialProfile.id,
             name = partialProfile.name.takeIf { it!!.isNotBlank() } ?: currentProfile.name,
             email = partialProfile.email.takeIf { it!!.isNotBlank() } ?: currentProfile.email,
             password = partialProfile.password.takeIf { it!!.isNotBlank() } ?: currentProfile.password,
@@ -59,6 +61,10 @@ class RegisterViewModel(private val userProfileRepository: UserProfileRepository
 
     fun registerUserProfileToRemote(userProfile: UserProfile, callback: (UserProfileResponse?) -> Unit) {
         userProfileRepository.registerUserProfileToRemote(userProfile, callback)
+    }
+
+    fun getUserIdFromPreferences(context: Context): String? {
+        return userProfileRepository.getUserIdFromPreferences(context)
     }
 
     // ViewModel id

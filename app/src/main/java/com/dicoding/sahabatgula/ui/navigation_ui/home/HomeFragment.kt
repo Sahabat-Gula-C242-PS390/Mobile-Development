@@ -1,12 +1,15 @@
 package com.dicoding.sahabatgula.ui.navigation_ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.dicoding.sahabatgula.databinding.FragmentHomeBinding
+import com.dicoding.sahabatgula.ui.profile.ProfileActivity
 
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment() {
 
 
@@ -18,6 +21,17 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.appCompatImageView.setOnClickListener {
+            Intent(requireContext(), ProfileActivity::class.java).also {
+                startActivity(it)
+                requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            }
+        }
     }
 
 }

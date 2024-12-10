@@ -173,5 +173,10 @@
     <string name="_2" >2</string >
     <string name="lemak_u0020" >"| Lemak "</string >
     <string name="_67" >67%</string >
+    <string name="text_1_berat" >Berat badanmu kurang ideal dengan risiko</string >
+    <string name="text_2_berat" >Berat badanmu ideal dengan risiko</string >
+    <string name="text_3_berat" >Berat badanmu berlebih dengan risiko</string >
+    <string name="text_4_berat" >Berat badanmu sangat berlebih dengan risiko</string >
+    <string name="text_diabetes" >diabetes rendah</string >
 
 </resources >

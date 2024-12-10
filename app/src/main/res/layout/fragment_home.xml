@@ -6,9 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="16dp"
     android:layout_marginBottom="92dp"
     android:scrollbars="none"
+    android:paddingTop="@dimen/_padding_margin_16dp"
+    android:paddingStart="@dimen/_padding_margin_16dp"
+    android:paddingEnd="@dimen/_padding_margin_16dp"
     tools:context=".ui.navigation_ui.home.HomeFragment" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -483,24 +485,36 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@id/btn_catat_konsumsi"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/btn_catat_konsumsi"
             app:layout_constraintTop_toBottomOf="@id/btn_catat_konsumsi" >
 
-            <TextView
-                android:id="@+id/catatan_is_empty"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="22dp"
-                android:drawableTop="@drawable/catatan_empty"
-                android:text="@string/belum_ada_catatan_apapun"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:visibility="visible"
-                tools:ignore="UseCompatTextViewDrawableXml" />
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+
+                <View
+                    android:layout_width="130dp"
+                    android:layout_height="96.81dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/empty_history"/>
+
+                <TextView
+                    android:id="@+id/catatan_is_empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:text="@string/belum_ada_catatan_apapun"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="visible"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_catatan_konsumsi"

@@ -1,6 +1,8 @@
 package com.dicoding.sahabatgula.ui.questionnaire
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.dicoding.sahabatgula.R
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.databinding.FragmentLastInfoBinding
 import com.dicoding.sahabatgula.di.Injection
+import com.dicoding.sahabatgula.ui.auth.LoginActivity
 import com.dicoding.sahabatgula.ui.auth.RegisterViewModel
 import com.dicoding.sahabatgula.ui.auth.RegisterViewModelFactory
 import com.google.android.material.button.MaterialButton
@@ -22,6 +25,7 @@ class LastInfoFragment : Fragment() {
     private val registerViewModel: RegisterViewModel by activityViewModels {
         RegisterViewModelFactory(Injection.provideRepository(requireContext()))
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +52,6 @@ class LastInfoFragment : Fragment() {
         val dailyActivityButtons = listOf(btnInactive, btnLight, btnModerate, btnHeavy, btnVeryHeavy)
         val fruitVegetablesButtons = listOf(btnYesFruitVegetables, btnNoFruitVegetables)
 
-        // daily activity
         btnInactive.setOnClickListener{
             selectButton(btnInactive, dailyActivityButtons)
         }
@@ -87,9 +90,8 @@ class LastInfoFragment : Fragment() {
             }
             val fruitVegetables = if (btnYesFruitVegetables.isSelected) 1 else 0
 
-
             val partialProfile = UserProfile(
-//                id = SharedPreferencesHelper.getUserId(requireContext()),
+
                 tingkatAktivitas = dailyActivity,
                 konsumsiBuah = fruitVegetables
             )
@@ -101,18 +103,19 @@ class LastInfoFragment : Fragment() {
                 registerViewModel.saveToDatabase(userProfile)
                 registerViewModel.registerUserProfileToRemote(userProfile) { response ->
                     if (response?.status == "success") {
-                        Toast.makeText(context, "Data berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Data berhasil dikirim!", Toast.LENGTH_SHORT).show()
+                        Log.d("ID_AT_ROOM", "Id User at Room database: ${userProfile.id}")
                     } else {
-                        Toast.makeText(context, "Gagal mengirim data.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Gagal mengirim data.", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
 
+            }
+            moveToLoginActivity()
         }
     }
 
     private fun selectButton(selectedButton: MaterialButton, buttons: List<MaterialButton>) {
-
         for (button in buttons) {
             if(button == selectedButton) {
                 button.isSelected = true
@@ -124,6 +127,9 @@ class LastInfoFragment : Fragment() {
         }
     }
 
-
-
+    private fun moveToLoginActivity() {
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
 }

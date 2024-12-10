@@ -10,7 +10,7 @@ object Injection {
         val database = UserProfileDatabase.getInstance(context)
         val dao = database.userProfileDao()
         val apiService = ApiConfig.getApiService()
-        return UserProfileRepository.getInstance(dao, apiService)
+        return UserProfileRepository.getInstance(dao, apiService, context)
 
     }
 }

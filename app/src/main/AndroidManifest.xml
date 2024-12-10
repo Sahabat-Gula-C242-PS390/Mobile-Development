@@ -26,6 +26,9 @@
         android:theme="@style/Theme.SahabatGula"
         tools:targetApi="31" >
         <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.navigation_ui.article.DetailArticleActivity"
             android:exported="false" />
         <activity
