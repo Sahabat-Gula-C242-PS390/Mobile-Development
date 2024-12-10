@@ -2,7 +2,7 @@ package com.dicoding.sahabatgula.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class UserProfileResponse(
+data class UserProfileResponse_2(
 
 	@field:SerializedName("userId")
 	val userId: String? = null,
@@ -14,16 +14,13 @@ data class UserProfileResponse(
 	val error: Boolean? = null,
 )
 
-data class ListUserProfileItem(
+data class ListUserProfileItem_2(
 
 	@field:SerializedName("name")
 	val name: String? = null,
 
 	@field:SerializedName("email")
 	val email: String? = null,
-
-	@field:SerializedName("password")
-	val password: String? = null,
 
 	@field:SerializedName("umur")
 	val umur: Int? = null,

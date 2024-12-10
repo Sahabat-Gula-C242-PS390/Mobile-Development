@@ -2,6 +2,9 @@ package com.dicoding.sahabatgula.helper
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.dicoding.sahabatgula.data.local.room.UserProfileDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 object SharedPreferencesHelper {
     private const val PREFS_NAME = "sahabat_gula_prefs"
@@ -22,6 +25,33 @@ object SharedPreferencesHelper {
         return getPreferences(context).getString(USER_ID_KEY, "") ?: ""
     }
 
+    fun saveUserSession(context: Context, userId: String) {
+        val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        sharedPreferences.edit().apply(){
+            putString("userId", userId)
+            putBoolean("isLoggedIn", true)
+            apply()
+        }
+    }
+
+    fun getCurrentUserId(context: Context): String? {
+        val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("userId", null)
+    }
+
+    suspend fun fetchUserData(userId: String, userDao: UserProfileDao) {
+        return withContext(Dispatchers.IO){
+            userDao.getUserProfile(userId)
+        }
+    }
+
+    fun clearSession(context: Context) {
+        val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        sharedPreferences.edit().apply{
+            clear()
+            apply()
+        }
+    }
 
     fun clearUserId(context: Context) {
         val editor = getPreferences(context).edit()

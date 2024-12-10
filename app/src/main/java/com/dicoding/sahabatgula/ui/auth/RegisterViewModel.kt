@@ -1,5 +1,6 @@
 package com.dicoding.sahabatgula.ui.auth
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -60,6 +61,10 @@ class RegisterViewModel(private val userProfileRepository: UserProfileRepository
 
     fun registerUserProfileToRemote(userProfile: UserProfile, callback: (UserProfileResponse?) -> Unit) {
         userProfileRepository.registerUserProfileToRemote(userProfile, callback)
+    }
+
+    fun getUserIdFromPreferences(context: Context): String? {
+        return userProfileRepository.getUserIdFromPreferences(context)
     }
 
     // ViewModel id

@@ -15,6 +15,7 @@ import com.dicoding.sahabatgula.databinding.FragmentLastInfoBinding
 import com.dicoding.sahabatgula.di.Injection
 import com.dicoding.sahabatgula.ui.auth.RegisterViewModel
 import com.dicoding.sahabatgula.ui.auth.RegisterViewModelFactory
+import com.dicoding.sahabatgula.ui.profile.ProfileFragment
 import com.google.android.material.button.MaterialButton
 
 class LastInfoFragment : Fragment() {
@@ -23,6 +24,7 @@ class LastInfoFragment : Fragment() {
     private val registerViewModel: RegisterViewModel by activityViewModels {
         RegisterViewModelFactory(Injection.provideRepository(requireContext()))
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,6 +76,8 @@ class LastInfoFragment : Fragment() {
             selectButton(btnNoFruitVegetables, fruitVegetablesButtons)
         }
 
+
+
         val btnLastInfo = binding.btnLastInfo
         btnLastInfo.setOnClickListener {
             val dailyActivity = when {
@@ -88,7 +92,6 @@ class LastInfoFragment : Fragment() {
             }
             val fruitVegetables = if (btnYesFruitVegetables.isSelected) 1 else 0
 
-
             val partialProfile = UserProfile(
 
                 tingkatAktivitas = dailyActivity,
@@ -101,14 +104,16 @@ class LastInfoFragment : Fragment() {
             if (userProfile != null) {
                 registerViewModel.saveToDatabase(userProfile)
                 registerViewModel.registerUserProfileToRemote(userProfile) { response ->
-                    if (response?.status == "success") {
+                    if (response?.error == false && response.status == "success") {
                         Toast.makeText(context, "Data berhasil dikirim!", Toast.LENGTH_SHORT).show()
                         Log.d("ID_AT_ROOM", "Id User at Room database: ${userProfile.id}")
                     } else {
                         Toast.makeText(context, "Gagal mengirim data.", Toast.LENGTH_SHORT).show()
                     }
                 }
+
             }
+            moveToNextFragment()
 
         }
 
@@ -128,6 +133,14 @@ class LastInfoFragment : Fragment() {
                 button.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.white))
             }
         }
+    }
+
+    private fun moveToNextFragment() {
+        val nextFragment = ProfileFragment()
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.activity_login, nextFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 

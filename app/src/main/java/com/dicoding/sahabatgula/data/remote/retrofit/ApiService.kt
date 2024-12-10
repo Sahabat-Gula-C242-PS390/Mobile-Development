@@ -3,8 +3,11 @@ package com.dicoding.sahabatgula.data.remote.retrofit
 import com.dicoding.sahabatgula.data.remote.response.ListUserProfileItem
 import com.dicoding.sahabatgula.data.remote.response.UserProfileResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -14,7 +17,12 @@ interface ApiService {
     ): Call<UserProfileResponse>
 
     @POST("auth/login")
-    fun login(
+    suspend fun login(
         @Body requestLogin: ListUserProfileItem
-    ): Call<UserProfileResponse>
+    ): Response<UserProfileResponse>
+
+    @GET("/user/{userId}")
+    fun getDataUser(
+        @Path("userId") userId: String = ""
+    ): Response<UserProfileResponse>
 }

@@ -1,7 +1,9 @@
 package com.dicoding.sahabatgula.repository
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
-import androidx.lifecycle.MediatorLiveData
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.data.local.room.UserProfileDao
 import com.dicoding.sahabatgula.data.remote.response.ListUserProfileItem
@@ -14,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserProfileRepository (private val userProfileDao: UserProfileDao, private val apiService: ApiService) {
+class UserProfileRepository (private val userProfileDao: UserProfileDao, private val apiService: ApiService, private val context: Context) {
 
 
     // di bawah ini berkaitan dengan database lokal, tujuannya untuk akses offline
@@ -41,19 +43,34 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
         userProfileDao.updateUserProfile(userProfile)
     }
 
-    // menghapus semua data profil pengguna
-    suspend fun deleteAllUserProfile() {
-        userProfileDao.deleteAllUserProfile()
+    // Mendapatkan SharedPreferences menggunakan Application context
+    private fun getSharedPreferences(context: Context): SharedPreferences {
+        return context.applicationContext.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
     }
 
-    private val result = MediatorLiveData<Result<List<UserProfile>>>()
-    
+    // Fungsi untuk menyimpan userId ke SharedPreferences
+    fun saveUserIdToPreferences(context: Context, userId: String) {
+        val sharedPreferences = getSharedPreferences(context)
+        sharedPreferences.edit().apply {
+            putString("userId", userId)
+            apply()
+        }
+    }
+
+    // Fungsi untuk mengambil userId dari SharedPreferences
+    fun getUserIdFromPreferences(context: Context): String? {
+        val sharedPreferences = getSharedPreferences(context)
+        return sharedPreferences.getString("userId", null)
+    }
+
+
     // menyimpan data user ke API (remote)
     /*karena register itu methodnya post, maka di repository ini dibuat sebuah method untuk mengirim data dari lokal
     ke network (API), misalnya setelah menambahkan atau memperbarui data. di sini juag menangani response api*/
     fun registerUserProfileToRemote(userProfile: UserProfile, onResponse:(UserProfileResponse?)-> Unit) {
         // result.value = Result.Loading
         val userProfileItem = ListUserProfileItem(
+            userId = userProfile.id,
             name = userProfile.name,
             email = userProfile.email,
             password = userProfile.password,
@@ -85,6 +102,9 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
                     val id: String? = response.body()?.userId
                     if (id != null) {
                         userProfile.id = id
+                        saveUserIdToPreferences(context, userProfile.id)
+                        val idNow = getUserIdFromPreferences(context)
+                        Log.d("ID_SEKARANG", "Id User at API: $idNow")
                         GlobalScope.launch(Dispatchers.IO) {
                             insertUserProfile(userProfile)
                         }
@@ -109,14 +129,47 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
         return userProfileDao.getUserProfileByEmail(email)
     }
 
+    suspend fun login(email: String, password: String): Result<UserProfile> {
+        return try {
+            val response = apiService.login(ListUserProfileItem(email = email, password = password))
+
+            if (response.isSuccessful && response.body()?.status == "success") {
+                val userItem = response.body()?.data
+                val userProfile = UserProfile(
+                    id = userItem?.userId.orEmpty(),
+                )
+
+                val userId_: String? = response.body()?.userId
+                if (userId_ != null) {
+                    userProfile.id = userId_
+                    saveUserIdToPreferences(context, userProfile.id)
+                    val idNow = getUserIdFromPreferences(context)
+                    Log.d("ID_SEKARANG", "Id User at API: $idNow")
+                    GlobalScope.launch(Dispatchers.IO) {
+                        insertUserProfile(userProfile)
+                    }
+                    Log.d("id_check", "id profile inserted: ${userProfile.id}")
+                }
+
+                Result.success(userProfile)
+            } else {
+                Result.failure(Exception(response.body()?.status ?: "Login failed"))
+            }
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
     companion object {
+        @SuppressLint("StaticFieldLeak")
         @Volatile
         private var instance: UserProfileRepository? = null
         fun getInstance(
             userProfileDao: UserProfileDao,
-            apiService: ApiService): UserProfileRepository =
+            apiService: ApiService,
+            context: Context): UserProfileRepository =
             instance ?: synchronized(this) {
-                instance ?: UserProfileRepository(userProfileDao, apiService)
+                instance ?: UserProfileRepository(userProfileDao, apiService, context)
             }.also { instance = it}
 
     }

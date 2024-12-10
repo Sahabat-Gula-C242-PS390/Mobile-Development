@@ -5,56 +5,91 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.dicoding.sahabatgula.R
+import androidx.fragment.app.viewModels
+import com.dicoding.sahabatgula.data.local.entity.UserProfile
+import com.dicoding.sahabatgula.data.local.room.UserProfileDatabase
+import com.dicoding.sahabatgula.databinding.FragmentProfileBinding
+import com.dicoding.sahabatgula.helper.SharedPreferencesHelper
+import java.text.DecimalFormat
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val profileViewModel by viewModels<ProfileViewModel> {
+        ProfileViewModelFactory(UserProfileDatabase.getInstance(requireContext()).userProfileDao()) // Factory untuk ViewModel
     }
+    private lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Ambil userId dari SharedPreferences
+        val userId = SharedPreferencesHelper.getCurrentUserId(requireContext())
+
+        // Jika userId ada, panggil ViewModel untuk mengambil data pengguna
+        if (userId!!.isNotEmpty()) {
+            // Ambil data pengguna berdasarkan userId
+            profileViewModel.fetchUserProfile(userId)
+
+            // Observe dataUser di ViewModel
+            profileViewModel.dataUser.observe(viewLifecycleOwner) { dataUser ->
+                dataUser?.let {
+                    setUserData(it)
                 }
             }
+        }
+    }
+
+    private fun setUserData(dataUser: UserProfile) {
+        var diabatesRisk: String = "diabetes rendah"
+        var bmi: Float = 0.0F
+
+        binding.apply {
+            name.text = dataUser.name
+            textDiabetes.text = diabatesRisk
+            numTinggi.text = dataUser.tinggi.toString()
+            numBerat.text = dataUser.berat.toString()
+
+            // Hitung BMI
+            bmi = dataUser.berat!!.toFloat() / ((dataUser.tinggi!!.toFloat() * dataUser.tinggi!!.toFloat()) * 0.0001F)
+            val decimalFormat = DecimalFormat("#.##")
+            val formattedBMI = decimalFormat.format(bmi)
+            numBmi.text = formattedBMI.toString()
+
+            // Tentukan kategori berat badan berdasarkan BMI
+            when {
+                bmi < 18.5 -> {
+                    binding.text1BeratDiabetes.visibility = View.VISIBLE
+                    binding.text2BeratDiabetes.visibility = View.GONE
+                    binding.text3BeratDiabetes.visibility = View.GONE
+                    binding.text4BeratDiabetes.visibility = View.GONE
+                }
+                bmi in 18.5..24.9 -> {
+                    binding.text1BeratDiabetes.visibility = View.GONE
+                    binding.text2BeratDiabetes.visibility = View.VISIBLE
+                    binding.text3BeratDiabetes.visibility = View.GONE
+                    binding.text4BeratDiabetes.visibility = View.GONE
+                }
+                bmi in 25.0..29.9 -> {
+                    binding.text1BeratDiabetes.visibility = View.GONE
+                    binding.text2BeratDiabetes.visibility = View.GONE
+                    binding.text3BeratDiabetes.visibility = View.VISIBLE
+                    binding.text4BeratDiabetes.visibility = View.GONE
+                }
+                else -> {
+                    binding.text1BeratDiabetes.visibility = View.GONE
+                    binding.text2BeratDiabetes.visibility = View.GONE
+                    binding.text3BeratDiabetes.visibility = View.GONE
+                    binding.text4BeratDiabetes.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 }
