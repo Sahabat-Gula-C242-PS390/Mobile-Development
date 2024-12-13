@@ -5,7 +5,7 @@
     android:id="@+id/card_nutrition_found"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="22dp"
+    android:layout_marginBottom="16dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="4dp"
     app:strokeColor="@color/grey_outline"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" >
 
             <TextView
-                android:id="@+id/product_found"
+                android:id="@+id/product_found_catatan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/product_found"
@@ -46,9 +46,22 @@
                     tools:ignore="UselessParent" >
 
                     <TableRow >
+
+                        <TextView
+                            android:text="@string/gula_u0020"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:id="@+id/gula_total_found"
+                            android:text="@string/_2"
+                            android:textColor="@color/red_high_risk"
+                            android:textSize="12sp" />
+                        <TextView
+                            android:text="@string/g_u0020"
+                            android:textColor="@color/red_high_risk"
+                            android:textSize="12sp" />
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="@string/karbo_u0020"
+                            android:text="@string/_karbo_u0020"
                             android:textSize="12sp" />
 
                         <TextView
@@ -92,6 +105,8 @@
                             android:text="@string/g_u0020"
                             android:textColor="@color/red_high_risk"
                             android:textSize="12sp" />
+
+
                     </TableRow >
                 </TableLayout >
 

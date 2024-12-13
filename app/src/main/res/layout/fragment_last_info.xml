@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="@dimen/_padding_margin_16dp"
-    tools:context=".ui.questionnaire.LastInfoFragment" >
+    tools:context=".ui.auth.questionnaire.LastInfoFragment" >
 
     <TextView
         android:id="@+id/headline_last_info"
@@ -49,54 +48,61 @@
 
     <GridLayout
         android:id="@+id/daily_activity_toggle_group"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="2"
         android:layout_marginTop="12dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        app:layout_constraintStart_toStartOf="@id/daily_activity"
+        app:layout_constraintTop_toBottomOf="@id/daily_activity"
         app:selectionRequired="true"
         app:singleSelection="true"
-        app:layout_constraintTop_toBottomOf="@id/daily_activity"
-        app:layout_constraintStart_toStartOf="@id/daily_activity">
+        tools:ignore="TextSizeCheck" >
 
         <!-- Tombol Baris Pertama -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/inactive"
-            android:layout_width="32dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="8dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/inactive"
             android:textColor="@color/green_primary"
-            android:textSize="12sp"
-            android:layout_marginEnd="4dp"
+            android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/light"
-            android:layout_width="37dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
             android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/ringan"
             android:textColor="@color/green_primary"
-            android:textSize="12sp"
-            android:layout_marginEnd="4dp"
+            android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/moderate"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical"
             android:backgroundTint="@android:color/white"
             android:text="@string/sedang"
             android:textColor="@color/green_primary"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp" />
@@ -104,32 +110,34 @@
         <!-- Tombol Baris Kedua -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/heavy"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/berat"
             android:textColor="@color/green_primary"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:cornerRadius="20dp"
-            android:layout_marginEnd="4dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/very_heavy"
-            android:layout_width="8dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/sangat_berat"
             android:textColor="@color/green_primary"
-            android:textSize="12sp"
-            android:layout_marginEnd="4dp"
+            android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
             app:strokeWidth="1dp" />
-    </GridLayout>
+    </GridLayout >
 
     <TextView
         android:id="@+id/fruit_vegetables"
@@ -144,47 +152,48 @@
         app:layout_constraintStart_toStartOf="@+id/daily_activity_toggle_group"
         app:layout_constraintTop_toBottomOf="@+id/daily_activity_toggle_group" />
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
+    <GridLayout
         android:id="@+id/fruit_vegetables_toggle_group"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="@+id/fruit_vegetables"
-        app:layout_constraintTop_toBottomOf="@+id/fruit_vegetables"
+        android:columnCount="2"
+        android:rowCount="1"
+        app:layout_constraintStart_toStartOf="@id/fruit_vegetables"
+        app:layout_constraintTop_toBottomOf="@id/fruit_vegetables"
         app:selectionRequired="true"
-        app:singleSelection="true"
-        tools:ignore="TextSizeCheck" >
+        app:singleSelection="true" >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/yes_fruit_vegetables"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@android:color/white"
             android:text="@string/everyday"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/no_fruit_vegetables"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:backgroundTint="@android:color/white"
             android:text="@string/rare"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"
             app:strokeColor="@color/grey_outline_button"
-            app:strokeWidth="1dp" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </GridLayout >
 
     <Button
-        android:id="@+id/btn_next_health_info"
+        android:id="@+id/btn_last_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"

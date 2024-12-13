@@ -47,11 +47,11 @@
                     <TableRow >
                         <TextView
                             android:layout_width="wrap_content"
-                            android:text="@string/karbo_u0020"
+                            android:text="@string/gula_u0020"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/karbo_total_found"
+                            android:id="@+id/gula_total_found"
                             android:layout_width="wrap_content"
                             android:text="@string/_12"
                             android:textColor="@color/red_high_risk"
