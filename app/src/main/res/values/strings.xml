@@ -96,7 +96,7 @@
     <string name="protein" >Protein</string >
     <string name="lemak" >Lemak</string >
     <string name="karbo" >Karbo</string >
-    <string name="not_found" >Oops! Kami belum dapat mendeteksi informasi makanan ini. Pastikan kemasan terlihat jelas dan pindai ulang.</string >
+    <string name="text_waiting" >Informasi makanan akan segera muncul. Pastikan kemasan terlihat jelas saat dipindai.</string >
     <string name="product_name" >Pocari Sweat 500 mL</string >
     <string name="_120" >120</string >
     <string name="_112" >112</string >
@@ -167,16 +167,26 @@
     </string >
     <string name="product_found" >Pocari Sweat 500 mL</string >
     <string name="g_u0020" >"g "</string >
-    <string name="karbo_u0020" >"Karbo "</string >
+    <string name="gula_u0020" >"Gula "</string >
     <string name="_12" >12</string >
     <string name="protein_u0020" >"| Protein "</string >
     <string name="_2" >2</string >
     <string name="lemak_u0020" >"| Lemak "</string >
+    <string name="_gula_u0020" >"| Gula "</string >
     <string name="_67" >67%</string >
     <string name="text_1_berat" >Berat badanmu kurang ideal dengan risiko</string >
     <string name="text_2_berat" >Berat badanmu ideal dengan risiko</string >
     <string name="text_3_berat" >Berat badanmu berlebih dengan risiko</string >
     <string name="text_4_berat" >Berat badanmu sangat berlebih dengan risiko</string >
     <string name="text_diabetes" >diabetes rendah</string >
+    <string name="explore_original_article" >Explore Original Article</string >
+    <string name="karbo_u0020" >Karbo\u0020</string >
+    <string name="_karbo_u0020" >| Karbo\u0020</string >
+    <string name="risiko_diabetes_sedang" >Risiko Diabetes Sedang</string >
+    <string name="text_risiko_diabetes_sedang" >Mengurangi konsumsi gula dan makanan olahan akan membantu menurunkan risiko.</string >
+    <string name="risiko_diabetes_tinggi" >Risiko Diabetes Tinggi</string >
+    <string name="text_risiko_diabetes_tinggi" >Segera konsultasikan dengan profesional kesehatan untuk pemeriksaan lebih lanjut.</string >
+    <string name="risiko_diabetes_rendah" >Risiko Diabetes Rendah</string >
+    <string name="text_risiko_diabetes_rendah" >Pertahankan pola makan seimbang dan aktivitas fisik untuk menjaga kesehatan Anda.</string >
 
 </resources >

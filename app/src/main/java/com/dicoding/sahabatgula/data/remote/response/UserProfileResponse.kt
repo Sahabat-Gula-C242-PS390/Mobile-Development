@@ -14,7 +14,10 @@ data class UserProfileResponse(
 	val error: Boolean? = null,
 
 	@field:SerializedName("data")
-	val data: ListUserProfileItem? = null
+	val data: ListUserProfileItem? = null,
+
+	@field:SerializedName("TotalNutrition")
+	val TotalNutrition: TotalNutrition? = null,
 )
 
 data class ListUserProfileItem(
@@ -84,4 +87,19 @@ data class ListUserProfileItem(
 
 	@field:SerializedName("updatedAt")
 	val updatedAt: String? = null
+)
+
+data class TotalNutrition(
+
+	@field:SerializedName("gula")
+	val gula: Int,
+
+	@field:SerializedName("lemak")
+	val lemak: Int,
+
+	@field:SerializedName("protein")
+	val protein: Int,
+
+	@field:SerializedName("karbohidrat")
+	val karbohidrat: Int,
 )

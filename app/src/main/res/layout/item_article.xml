@@ -26,15 +26,15 @@
             tools:srcCompat="@drawable/sample_img_detail"
             tools:ignore="ContentDescription"/>
 
-        <TextView
-            android:id="@+id/date_article"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="22 Oktober 2021"
-            android:textSize="12sp"
-            android:textColor="@color/green_primary"
-            android:layout_marginTop="12dp"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/date_article"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:text="22 Oktober 2021"-->
+<!--            android:textSize="12sp"-->
+<!--            android:textColor="@color/green_primary"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            />-->
 
         <TextView
             android:id="@+id/title_article"
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             tools:text="3 Cara Menghitung Kalori Harian Makanan"
             android:textStyle="bold"
+            android:layout_marginTop="12dp"
             android:textColor="@color/black"
             android:textSize="16sp"
             />

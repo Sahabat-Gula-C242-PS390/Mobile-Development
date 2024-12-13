@@ -21,21 +21,11 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
 
     // di bawah ini berkaitan dengan database lokal, tujuannya untuk akses offline
 
-    // mengambil data profil pengguna berdasarkan id
-    suspend fun getUserProfileByIdFromDao(id: String): UserProfile {
-        return userProfileDao.getUserProfile(id)
-    }
-
     // menyimpan data profil pengguna
     /*fungsi ini tidak menggunakan List<UserProfile>  karena bertujuan untuk menyimpan satu profile penggguna
     atau single insert, bukan banyak data dari pengguna atau batch insert*/
     suspend fun insertUserProfile(userProfile: UserProfile) {
         userProfileDao.insertUserProfile(userProfile)
-    }
-
-    // memperbarui data profil pengguna
-    suspend fun updateUserProfile(userProfile: UserProfile) {
-        userProfileDao.updateUserProfile(userProfile)
     }
 
     // Mendapatkan SharedPreferences menggunakan Application context
@@ -179,7 +169,7 @@ class UserProfileRepository (private val userProfileDao: UserProfileDao, private
                         karbohidratHarian = userItem?.karbohidratHarian ?: 0,
                         proteinHarian = userItem?.proteinHarian ?: 0,
                         lemakHarian = userItem?.lemakHarian ?: 0,
-                        gulaHarian = userItem?.gulaHarian ?: 0
+                        gulaHarian = userItem?.gulaHarian ?: 0,
                     )
                 }
                 Result.success(userProfile!!)

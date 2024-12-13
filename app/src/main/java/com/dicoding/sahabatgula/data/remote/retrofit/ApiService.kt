@@ -1,5 +1,7 @@
 package com.dicoding.sahabatgula.data.remote.retrofit
 
+import com.dicoding.sahabatgula.data.remote.response.ArticleResponse
+import com.dicoding.sahabatgula.data.remote.response.DetailArticleResponse
 import com.dicoding.sahabatgula.data.remote.response.ListUserProfileItem
 import com.dicoding.sahabatgula.data.remote.response.UserProfileResponse
 import retrofit2.Call
@@ -25,4 +27,12 @@ interface ApiService {
     suspend fun getDataUser(
         @Path("userId") userId: String? = ""
     ): Response<UserProfileResponse>
+
+    @GET("/articles")
+    fun getArticles(): Call<ArticleResponse>
+
+    @GET("/article/{id}")
+    fun getArticleById(
+        @Path("id") id: String
+    ): Call<DetailArticleResponse>
 }

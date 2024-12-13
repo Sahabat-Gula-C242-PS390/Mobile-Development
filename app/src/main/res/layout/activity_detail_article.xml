@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/title_page_article"
+            android:id="@+id/title_article"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="3sp"
@@ -25,15 +25,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/date_article"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tanggal_article"
-            android:textSize="12sp"
-            android:textColor="@color/green_primary"
-            android:layout_marginTop="12dp"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/date_article"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/tanggal_article"-->
+<!--            android:textSize="12sp"-->
+<!--            android:textColor="@color/green_primary"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            />-->
 
         <ImageView
             android:id="@+id/img_item_photo"
@@ -56,24 +56,23 @@
             />
 
         <TextView
-            android:id="@+id/title_article"
+            android:id="@+id/data_article"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sub_judul_article"
-            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginTop="24dp"
             />
 
-        <TextView
-            android:id="@+id/data_article"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/data_article"
-            android:textColor="@color/black"
-            android:layout_marginTop="12dp"
-            android:textSize="12sp"/>
+        <Button
+            android:id="@+id/btn_see"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/explore_original_article"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 

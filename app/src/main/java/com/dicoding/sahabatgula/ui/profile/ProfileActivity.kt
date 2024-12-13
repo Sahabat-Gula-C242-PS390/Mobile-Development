@@ -1,11 +1,18 @@
 package com.dicoding.sahabatgula.ui.profile
 
+import android.content.res.ColorStateList
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.dicoding.sahabatgula.R
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.databinding.ActivityProfileBinding
 import com.dicoding.sahabatgula.di.Injection
@@ -31,17 +38,40 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setActionBar() {
-        supportActionBar?.title = "Kembali"
+        supportActionBar?.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.white_bg_action_bar))
+        supportActionBar?.elevation = 0f
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowCustomEnabled(true)
+        supportActionBar?.apply {
+            val textView = TextView(this@ProfileActivity).apply {
+                text = "Kembali"
+                textSize = 16f
+                setTypeface(typeface, Typeface.NORMAL)
+                setTextColor(ContextCompat.getColor(context, R.color.black))
+                setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                gravity = Gravity.START
+            }
+            setCustomView(
+                textView,
+                ActionBar.LayoutParams(
+                    ActionBar.LayoutParams.MATCH_PARENT,
+                    ActionBar.LayoutParams.WRAP_CONTENT,
+                    Gravity.START
+                )
+
+            )
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun setUserData(dataUser: UserProfile) {
-        var diabatesRisk: String = "diabetes rendah"
         var bmi: Float = 0.0F
+
+        val mRiskPoint = setDiabetesRisk(dataUser)
 
         binding.apply {
             name.text = dataUser.name
-            textDiabetes.text = diabatesRisk
+            riskPoint.text = mRiskPoint.toString()
             numTinggi.text = dataUser.tinggi.toString()
             numBerat.text = dataUser.berat.toString()
 
@@ -51,6 +81,42 @@ class ProfileActivity : AppCompatActivity() {
             numBmi.text = formattedBMI.toString()
             setBMI(bmi)
         }
+
+        val diabetesRisk = binding.diabetesRiskCard
+        val textDiabetesRisk = binding.textDiabetesRiskCard
+        val diabetesCard = binding.diabetesCard
+        val indicatorPoint = binding.indicatorPointDiabetes
+        val textRiskPoint = binding.riskPoint
+
+        when {
+            mRiskPoint <= 12 -> {
+                textRiskPoint.setTextColor(ContextCompat.getColor(this, R.color.yellow_mid_risk))
+                indicatorPoint.setIndicatorColor(ContextCompat.getColor(this, R.color.yellow_mid_risk))
+                diabetesCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.yellow_fill_risk))
+                diabetesCard.setStrokeColor(ContextCompat.getColor(this, R.color.yellow_mid_risk))
+                diabetesRisk.setText("Risiko Diabetes Sedang")
+                textDiabetesRisk.setText("Mengurangi konsumsi gula dan makanan olahan akan membantu menurunkan risiko.")
+            }
+            mRiskPoint >= 14 -> {
+                textRiskPoint.setTextColor(ContextCompat.getColor(this, R.color.red_high_risk))
+                indicatorPoint.setIndicatorColor(ContextCompat.getColor(this, R.color.red_high_risk))
+                diabetesCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red_fill_risk))
+                diabetesCard.setStrokeColor(ContextCompat.getColor(this, R.color.red_high_risk))
+                diabetesRisk.setText("Risiko Diabetes Tinggi")
+                textDiabetesRisk.setText("Segera konsultasikan dengan profesional kesehatan untuk pemeriksaan lebih lanjut.")
+            }
+            else -> {
+                textRiskPoint.setTextColor(ContextCompat.getColor(this, R.color.green_low_risk))
+                indicatorPoint.setIndicatorColor(ContextCompat.getColor(this, R.color.green_low_risk))
+                diabetesCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green_fill_risk))
+                diabetesCard.setStrokeColor(ContextCompat.getColor(this, R.color.green_low_risk))
+                diabetesRisk.setText("Risiko Diabetes Rendah")
+                textDiabetesRisk.setText("Pertahankan pola makan seimbang dan aktivitas fisik untuk menjaga kesehatan Anda.")
+            }
+        }
+
+        val kaloriHarian = setKaloriHarian(dataUser)
+
     }
 
     private fun getDataUser() {
@@ -110,5 +176,63 @@ class ProfileActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setDiabetesRisk(dataUser: UserProfile): Int{
+        var riskPoint: Int = 0
+
+        riskPoint += when {
+            dataUser.umur in 35..44 -> 2
+            dataUser.umur in 45..54 -> 3
+            dataUser.umur!! >= 55 -> 4
+            else -> 0
+        }
+
+        val bMI = dataUser.berat!!.toFloat() / ((dataUser.tinggi!!.toFloat() * dataUser.tinggi!!.toFloat()) * 0.0001F)
+        riskPoint += when {
+            bMI in 25.0..30.0 -> 1
+            bMI > 30.0 -> 2
+            else -> 0
+        }
+
+        riskPoint += when {
+            dataUser.lingkarPinggang == "small" -> 0
+            dataUser.lingkarPinggang == "medium" -> 1
+            dataUser.lingkarPinggang == "large" -> 2
+            else -> 0
+        }
+
+        riskPoint += when {
+            dataUser.tingkatAktivitas == "none" -> 2
+            else -> 0
+        }
+
+        riskPoint += when {
+            dataUser.konsumsiBuah == 0 -> 1
+            else -> 0
+        }
+
+        riskPoint += when {
+            dataUser.tekananDarahTinggi == 1 -> 1
+            else -> 0
+        }
+
+        riskPoint += when {
+            dataUser.gulaDarahTinggi == 1 -> 1
+            else -> 0
+        }
+
+        riskPoint += when {
+            dataUser.riwayatDiabetes == 1 -> 1
+            else -> 0
+        }
+
+        return riskPoint
+    }
+
+    private fun setKaloriHarian(dataUser: UserProfile): Int {
+        var kaloriHarian: Int = 0
+        kaloriHarian = (dataUser.proteinHarian*4) + (dataUser.karbohidratHarian*4) + (dataUser.lemakHarian*9)
+        return kaloriHarian
     }
 }

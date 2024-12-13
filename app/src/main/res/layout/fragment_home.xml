@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:layout_marginBottom="92dp"
+    android:layout_marginBottom="0dp"
     android:scrollbars="none"
     android:paddingTop="@dimen/_padding_margin_16dp"
     android:paddingStart="@dimen/_padding_margin_16dp"
@@ -476,7 +476,7 @@
             android:id="@+id/btn_catat_konsumsi"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="32dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="@string/catat_konsumsi"
@@ -488,8 +488,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_height="220dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="@id/btn_catat_konsumsi"
             app:layout_constraintHorizontal_bias="0.0"
@@ -497,9 +496,12 @@
             app:layout_constraintTop_toBottomOf="@id/btn_catat_konsumsi" >
 
             <LinearLayout
+                android:id="@+id/catatan_is_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:layout_gravity="center_horizontal">
 
                 <View
@@ -509,23 +511,25 @@
                     android:background="@drawable/empty_history"/>
 
                 <TextView
-                    android:id="@+id/catatan_is_empty"
+                    android:id="@+id/text_catatan_is_empty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="22dp"
                     android:text="@string/belum_ada_catatan_apapun"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:visibility="visible"
                     android:gravity="center_horizontal"/>
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_catatan_konsumsi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_catatan_konsumsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:visibility="visible"
+                    tools:listitem="@layout/item_catatan"/>
+
 
         </LinearLayout >
 

@@ -110,4 +110,7 @@ dependencies {
 
     // Work Manager
     implementation (libs.androidx.work.runtime)
+
+    // Glide
+    implementation(libs.glide)
 }
