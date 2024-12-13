@@ -1,4 +1,4 @@
-package com.dicoding.sahabatgula.ui.questionnaire
+package com.dicoding.sahabatgula.ui.auth.questionnaire
 
 import android.content.Intent
 import android.os.Bundle

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.questionnaire.LastInfoFragment" >
+    tools:context=".ui.auth.questionnaire.LastInfoFragment" >
 
     <TextView
         android:id="@+id/headline_last_info"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:columnCount="3"
+        android:columnCount="2"
         android:rowCount="3"
         app:layout_constraintStart_toStartOf="@id/daily_activity"
         app:layout_constraintTop_toBottomOf="@id/daily_activity"
@@ -101,6 +101,9 @@
             android:layout_gravity="center_vertical"
             android:backgroundTint="@android:color/white"
             android:text="@string/sedang"
+            android:layout_marginEnd="12dp"
+
+            android:layout_marginBottom="8dp"
             android:textColor="@color/green_primary"
             android:textSize="14sp"
             app:cornerRadius="20dp"

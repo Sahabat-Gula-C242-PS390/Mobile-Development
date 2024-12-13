@@ -1,4 +1,4 @@
-package com.dicoding.sahabatgula.ui.questionnaire
+package com.dicoding.sahabatgula.ui.auth.questionnaire
 
 import android.os.Bundle
 import android.view.LayoutInflater

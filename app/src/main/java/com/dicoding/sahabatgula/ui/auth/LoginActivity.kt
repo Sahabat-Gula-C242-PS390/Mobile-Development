@@ -46,6 +46,10 @@ class LoginActivity : AppCompatActivity(){
                 Toast.makeText(this, "Email dan Password tidak boleh kosong", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.forgotPassword.setOnClickListener{
+            Toast.makeText(this, "Dalam pengembangan", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun goToRegister(tv: TextView) {

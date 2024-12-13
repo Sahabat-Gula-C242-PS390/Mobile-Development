@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/list_article"
     android:background="@color/white"
     android:padding="@dimen/_padding_margin_16dp"
     tools:context=".ui.navigation_ui.article.ArticleFragment" >

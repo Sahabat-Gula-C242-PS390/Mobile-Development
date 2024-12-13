@@ -13,7 +13,7 @@ import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.databinding.FragmentRegisterBinding
 import com.dicoding.sahabatgula.di.Injection
 import com.dicoding.sahabatgula.helper.SharedPreferencesHelper
-import com.dicoding.sahabatgula.ui.questionnaire.BasicInfoFragment
+import com.dicoding.sahabatgula.ui.auth.questionnaire.BasicInfoFragment
 import java.util.UUID
 
 class RegisterFragment : Fragment() {
