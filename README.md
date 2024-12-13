@@ -28,7 +28,7 @@ Sahabat Gula is an innovative application designed to help users track and monit
 ---
 
 ## Try Our Application
-👉 **[Click here to try Sahabat Gula APK](https://bit.ly/SahabatGulaAPK)**  
+👉 **[Click here to try Sahabat Gula APK](https://bit.ly/SahabatGulaTryOurApp)**  
 
 🎥 **[Watch Our Demo Video](https://bit.ly/SahabatGulaDemoVideo)**  
 
