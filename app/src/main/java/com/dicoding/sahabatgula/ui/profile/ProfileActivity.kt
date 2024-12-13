@@ -1,5 +1,6 @@
 package com.dicoding.sahabatgula.ui.profile
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.os.Bundle
@@ -8,15 +9,19 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.dicoding.sahabatgula.R
 import com.dicoding.sahabatgula.data.local.entity.UserProfile
 import com.dicoding.sahabatgula.databinding.ActivityProfileBinding
 import com.dicoding.sahabatgula.di.Injection
 import com.dicoding.sahabatgula.helper.SharedPreferencesHelper
+import com.dicoding.sahabatgula.ui.auth.LoginActivity
+import com.dicoding.sahabatgula.ui.auth.RegisterFragment
 import java.text.DecimalFormat
 
 class ProfileActivity : AppCompatActivity() {
@@ -35,6 +40,23 @@ class ProfileActivity : AppCompatActivity() {
 
         setActionBar()
         getDataUser()
+        goToUpgrade()
+        changePass()
+
+        binding.logout.setOnClickListener {
+
+            SharedPreferencesHelper.clearUserSession(this)
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            Toast.makeText(this, "Anda telah berhasil logout", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun changePass() {
+        binding.optionChangePass.setOnClickListener {
+            Toast.makeText(this, "Dalam pengembangan", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setActionBar() {
@@ -44,7 +66,7 @@ class ProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.apply {
             val textView = TextView(this@ProfileActivity).apply {
-                text = "Kembali"
+                text = context.getString(R.string.kembali)
                 textSize = 16f
                 setTypeface(typeface, Typeface.NORMAL)
                 setTextColor(ContextCompat.getColor(context, R.color.black))
@@ -94,28 +116,26 @@ class ProfileActivity : AppCompatActivity() {
                 indicatorPoint.setIndicatorColor(ContextCompat.getColor(this, R.color.yellow_mid_risk))
                 diabetesCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.yellow_fill_risk))
                 diabetesCard.setStrokeColor(ContextCompat.getColor(this, R.color.yellow_mid_risk))
-                diabetesRisk.setText("Risiko Diabetes Sedang")
-                textDiabetesRisk.setText("Mengurangi konsumsi gula dan makanan olahan akan membantu menurunkan risiko.")
+                diabetesRisk.setText(R.string.risiko_diabetes_sedang)
+                textDiabetesRisk.setText(R.string.text_risiko_diabetes_sedang)
             }
             mRiskPoint >= 14 -> {
                 textRiskPoint.setTextColor(ContextCompat.getColor(this, R.color.red_high_risk))
                 indicatorPoint.setIndicatorColor(ContextCompat.getColor(this, R.color.red_high_risk))
                 diabetesCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red_fill_risk))
                 diabetesCard.setStrokeColor(ContextCompat.getColor(this, R.color.red_high_risk))
-                diabetesRisk.setText("Risiko Diabetes Tinggi")
-                textDiabetesRisk.setText("Segera konsultasikan dengan profesional kesehatan untuk pemeriksaan lebih lanjut.")
+                diabetesRisk.setText(R.string.risiko_diabetes_tinggi)
+                textDiabetesRisk.setText(R.string.text_risiko_diabetes_tinggi)
             }
             else -> {
                 textRiskPoint.setTextColor(ContextCompat.getColor(this, R.color.green_low_risk))
                 indicatorPoint.setIndicatorColor(ContextCompat.getColor(this, R.color.green_low_risk))
                 diabetesCard.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green_fill_risk))
                 diabetesCard.setStrokeColor(ContextCompat.getColor(this, R.color.green_low_risk))
-                diabetesRisk.setText("Risiko Diabetes Rendah")
-                textDiabetesRisk.setText("Pertahankan pola makan seimbang dan aktivitas fisik untuk menjaga kesehatan Anda.")
+                diabetesRisk.setText(R.string.risiko_diabetes_rendah)
+                textDiabetesRisk.setText(R.string.text_risiko_diabetes_rendah)
             }
         }
-
-        val kaloriHarian = setKaloriHarian(dataUser)
 
     }
 
@@ -230,9 +250,13 @@ class ProfileActivity : AppCompatActivity() {
         return riskPoint
     }
 
-    private fun setKaloriHarian(dataUser: UserProfile): Int {
-        var kaloriHarian: Int = 0
-        kaloriHarian = (dataUser.proteinHarian*4) + (dataUser.karbohidratHarian*4) + (dataUser.lemakHarian*9)
-        return kaloriHarian
+    private fun goToUpgrade() {
+        binding.optionUpgrade.setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_profile, UpgradeFragment())
+                .addToBackStack(ProfileActivity::class.java.simpleName)
+                .commit()
+        }
     }
+
 }

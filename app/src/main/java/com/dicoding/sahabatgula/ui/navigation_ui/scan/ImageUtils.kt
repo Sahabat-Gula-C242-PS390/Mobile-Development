@@ -22,4 +22,11 @@ object ImageUtils {
         yuvImage.compressToJpeg(Rect(0, 0, width, height), 50, out)  // Compress with 50% quality
         return out.toByteArray()
     }
+
+    fun imageToByteArray(image: Image): ByteArray {
+        val buffer = image.planes[0].buffer
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+        return bytes
+    }
 }

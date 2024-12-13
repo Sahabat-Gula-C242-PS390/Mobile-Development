@@ -38,11 +38,12 @@ class ScanAdapter : ListAdapter<PredictionItem, ScanAdapter.ScanViewHolder>(Diff
     }
 
     class ScanViewHolder(binding: ItemScanBinding) : RecyclerView.ViewHolder(binding.root) {
-        private val tvProductFound: TextView = itemView.findViewById(R.id.product_found)
-        private val tvPredictPercentage: TextView = itemView.findViewById(R.id.predict_percentage)
-        private val tvGulaTotalFound: TextView = itemView.findViewById(R.id.gula_total_found)
-        private val tvProteinTotalFound: TextView = itemView.findViewById(R.id.protein_total_found)
-        private val tvLemakTotalFound: TextView = itemView.findViewById(R.id.lemak_total_found)
+        private val tvProductFound: TextView = binding.productFound
+        private val tvPredictPercentage: TextView = binding.predictPercentage
+        private val tvGulaTotalFound: TextView = binding.gulaTotalFound
+        private val tvProteinTotalFound: TextView = binding.proteinTotalFound
+        private val tvLemakTotalFound: TextView = binding.lemakTotalFound
+
 
         fun bind(result: PredictionItem) {
             tvProductFound.text = result.name

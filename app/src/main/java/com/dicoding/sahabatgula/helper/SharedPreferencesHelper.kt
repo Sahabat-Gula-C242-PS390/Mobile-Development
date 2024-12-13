@@ -3,13 +3,15 @@ package com.dicoding.sahabatgula.helper
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.dicoding.sahabatgula.data.local.room.UserProfileDao
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 object SharedPreferencesHelper {
     private const val PREFS_NAME = "sahabat_gula_prefs"
     private const val USER_ID_KEY = "user_id"
-
     const val NAME_KEY = "name_key"
     private const val KARBO_KEY = "karbo_key"
     private const val LEMAK_KEY = "lemak_key"
@@ -22,18 +24,12 @@ object SharedPreferencesHelper {
         return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    // Fungsi untuk mengecek apakah data dengan key tertentu sudah ada
-    fun isDataExist(context: Context, key: String): Boolean {
-        val sharedPreferences = getPreferences(context)
-        return sharedPreferences.contains(key)  // Mengecek apakah key sudah ada
-    }
-
-    fun saveScanData( context: Context, name: String?, karbo: Int, lemak: Double, gula: Int, protein: Int) {
+    fun saveScanData( context: Context, name: String?, karbo: Int, lemak: Double, gula: Int, protein: Int, totalKalori: Double) {
         val sharedPreferences = getPreferences(context)
         val editor = sharedPreferences.edit()
 
         // Membuat objek untuk menyimpan data
-        val scanData = ScanData(name, karbo, lemak, gula, protein)
+        val scanData = ScanData(name, karbo, lemak, gula, protein, totalKalori)
 
         // Ambil data yang sudah ada di SharedPreferences (jika ada)
         val currentListJson = sharedPreferences.getString(CATATAN_KEY, "[]")
@@ -51,7 +47,6 @@ object SharedPreferencesHelper {
         Log.d("SharedPrefs", "Saving ScanData: $scanData")
     }
 
-
     fun getScanData(context: Context): List<ScanData> {
         val sharedPreferences = getPreferences(context)
         val jsonString = sharedPreferences.getString(CATATAN_KEY, "[]")
@@ -61,11 +56,6 @@ object SharedPreferencesHelper {
         return Gson().fromJson(jsonString, type) ?: emptyList() // Jika null, kembalikan list kosong
     }
 
-    fun isDataExpired(context: Context): Boolean {
-        val timestamp = getPreferences(context).getLong(TIMESTAMP_KEY, 0)
-        return System.currentTimeMillis() - timestamp > 24 * 60 * 60 * 1000  // 24 jam dalam millisecond
-    }
-
     fun saveUserId(context: Context, userId: String) {
         val editor = getPreferences(context).edit()
         editor.putString(USER_ID_KEY, userId)
@@ -73,7 +63,13 @@ object SharedPreferencesHelper {
     }
 
     fun getUserId(context: Context): String {
+//        return getPreferences(context).getLong(USER_ID_KEY, )
         return getPreferences(context).getString(USER_ID_KEY, "") ?: ""
+    }
+
+    fun getCurrentUserId(context: Context): String? {
+        val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+        return sharedPreferences.getString("userId", null)
     }
 
     fun saveUserSession(context: Context, userId: String) {
@@ -85,17 +81,11 @@ object SharedPreferencesHelper {
         }
     }
 
-    fun getCurrentUserId(context: Context): String? {
-        val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("userId", null)
-    }
-
-    fun clearSession(context: Context) {
-        val sharedPreferences = context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
-        sharedPreferences.edit().apply{
-            clear()
-            apply()
-        }
+    fun clearUserSession(context: Context) {
+        val sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear() // Hapus semua data
+        editor.apply()
     }
 
     fun clearUserId(context: Context) {
@@ -103,9 +93,6 @@ object SharedPreferencesHelper {
         editor.remove(USER_ID_KEY)
         editor.apply()
     }
-
-
-
 }
 
 data class ScanData(
@@ -113,5 +100,6 @@ data class ScanData(
     val karbo: Int,
     val lemak: Double,
     val gula: Int,
-    val protein: Int
+    val protein: Int,
+    val totalKalori: Double
 )

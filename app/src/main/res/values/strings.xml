@@ -172,7 +172,6 @@
     <string name="protein_u0020" >"| Protein "</string >
     <string name="_2" >2</string >
     <string name="lemak_u0020" >"| Lemak "</string >
-    <string name="_gula_u0020" >"| Gula "</string >
     <string name="_67" >67%</string >
     <string name="text_1_berat" >Berat badanmu kurang ideal dengan risiko</string >
     <string name="text_2_berat" >Berat badanmu ideal dengan risiko</string >
@@ -180,13 +179,27 @@
     <string name="text_4_berat" >Berat badanmu sangat berlebih dengan risiko</string >
     <string name="text_diabetes" >diabetes rendah</string >
     <string name="explore_original_article" >Explore Original Article</string >
-    <string name="karbo_u0020" >Karbo\u0020</string >
-    <string name="_karbo_u0020" >| Karbo\u0020</string >
+    <string name="karbo_u0020" >Karbo\\u0020</string >
     <string name="risiko_diabetes_sedang" >Risiko Diabetes Sedang</string >
     <string name="text_risiko_diabetes_sedang" >Mengurangi konsumsi gula dan makanan olahan akan membantu menurunkan risiko.</string >
     <string name="risiko_diabetes_tinggi" >Risiko Diabetes Tinggi</string >
     <string name="text_risiko_diabetes_tinggi" >Segera konsultasikan dengan profesional kesehatan untuk pemeriksaan lebih lanjut.</string >
     <string name="risiko_diabetes_rendah" >Risiko Diabetes Rendah</string >
     <string name="text_risiko_diabetes_rendah" >Pertahankan pola makan seimbang dan aktivitas fisik untuk menjaga kesehatan Anda.</string >
+    <string name="_karbo_u0020" >| Karbo\u0020</string >
+    <string name="kkal" >kkal</string >
+    <string name="upgrade_ke_premium" >Upgrade ke Premium</string >
+    <string name="text_premium" >Dapatkan fitur lengkap dan nikmati pengalaman terbaik untuk menjaga kesehatan Anda.</string >
+    <string name="notifikasi_cerdas" >Notifikasi Cerdas</string >
+    <string name="text_notif" >Pengingat otomatis membantu pengguna tetap sadar akan batas konsumsi harian, jadwal makan, dan peringatan penting lainnya.</string >
+    <string name="catat_makanan" >Pencatatan Makanan Lanjutan</string >
+    <string name="text_catat_makanan" >Tambahkan catatan makanan dengan akses penuh ke database lengkap. Fitur pencarian memudahkan input dan manajemen konsumsi.</string >
+    <string name="analisis_konsumsi" >Analisis Konsumsi Mendalam</string >
+    <string name="text_analisis_konsumsi" >Tambahkan catatan makanan dengan akses penuh ke database lengkap. Fitur pencarian memudahkan input dan manajemen konsumsi.</string >
+    <string name="riwayat_catatan_lengkap" >Riwayat Catatan Lengkap</string >
+    <string name="text_riwayat_catatan" >Akses riwayat konsumsi harian secara detail—menginformasikan tren kesehatan dan pola makan sebelumnya.</string >
+    <string name="upgrade_sekarang" >Upgrade Sekarang</string >
+    <string name="kembali" >Kembali</string >
+    <string name="riwayat_catatan" >Riwayat Catatan</string >
 
 </resources >

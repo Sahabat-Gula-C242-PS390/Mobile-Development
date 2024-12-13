@@ -31,20 +31,22 @@ class DataScanActivity : AppCompatActivity() {
         val lemakScan  = intent.getDoubleExtra("lemak", 0.0)
         val gulaScan  = intent.getIntExtra("gula", 0)
         val proteinScan  = intent.getIntExtra("protein", 0)
+        val kaloriNutrition = (proteinScan*4).toDouble() + (karboScan*4).toDouble() + (lemakScan*9)
 
         binding.productName.text = nameScan
-        binding.karboConsume.text = karboScan.toString()
-        binding.lemakConsume.text = lemakScan.toString()
-        binding.gulaConsume.text = gulaScan.toString()
-        binding.proteinConsume.text = proteinScan.toString()
+        binding.karboConsume.text = (karboScan*4).toString()
+        binding.lemakConsume.text = (lemakScan*(9.0)).toInt().toString()
+        binding.gulaConsume.text = (gulaScan*4).toString()
+        binding.proteinConsume.text = (proteinScan*4).toString()
+        binding.productNutritions.text = kaloriNutrition.toString()
 
         binding.btnCatatKonsumsi.setOnClickListener {
             nameScan?.let {
-                SharedPreferencesHelper.saveScanData(this, nameScan, karboScan, lemakScan, gulaScan, proteinScan)
+                SharedPreferencesHelper.saveScanData(this, nameScan, karboScan, lemakScan, gulaScan, proteinScan, kaloriNutrition)
                 val data = SharedPreferencesHelper.getScanData(this)
                 Log.d("DataScanActivity", "Data retrieved: $data")
                 if(data.isNotEmpty()) {
-                    Toast.makeText(this, "$data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Data berhasil disimpan", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Data gagal disimpan", Toast.LENGTH_SHORT).show()
                 }

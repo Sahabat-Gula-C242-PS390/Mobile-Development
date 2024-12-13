@@ -28,21 +28,50 @@ class HomeFragment : Fragment() {
     private val homeViewModel by viewModels<HomeViewModel> {
         HomeViewModelFactory(Injection.provideRepository(requireContext()))
     }
+    private var totalKalori: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
         // Cek apakah ada data di SharedPreferences
         val scanDataList = SharedPreferencesHelper.getScanData(requireContext())
 
         // Set RecyclerView
         binding.rvCatatanKonsumsi.layoutManager = LinearLayoutManager(context)
 
+
+
         // Jika data ada, set adapter
         if (scanDataList.isNotEmpty()) {
+
+
+            // Hitung total karbo, lemak, gula, protein, dan total kalori
+            var totalKarbo = 0
+            var totalLemak = 0.0
+            var totalGula = 0
+            var totalProtein = 0
+            var totalKaloriAkhir = 0.0
+
+            scanDataList.forEach { data ->
+                totalKarbo += data.karbo
+                totalLemak += data.lemak
+                totalGula += data.gula
+                totalProtein += data.protein
+                totalKaloriAkhir += data.totalKalori
+            }
+
+            // Tampilkan data total di UI
+            binding.karboConsume.text = totalKarbo.toString()
+            binding.lemakConsume.text = totalLemak.toInt().toString()
+            binding.gulaConsume.text = totalGula.toString()
+            binding.proteinConsume.text = totalProtein.toString()
+            totalKalori = (totalProtein.toDouble()*4.0) + (totalKarbo.toDouble()*4.0) + (totalLemak*9.0)
+            binding.kaloriHarianJumlah.text = totalKalori.toInt().toString()
+            Log.d("TOTAL KALORI", "total kalori: $totalKalori")
+
+
             adapter = CatatanAdapter()
             binding.rvCatatanKonsumsi.adapter = adapter
             adapter.submitList(scanDataList)
@@ -52,6 +81,7 @@ class HomeFragment : Fragment() {
             binding.catatanIsEmpty.visibility = View.VISIBLE
             binding.rvCatatanKonsumsi.visibility = View.GONE
         }
+
         return binding.root
     }
 
@@ -59,6 +89,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val userId = SharedPreferencesHelper.getCurrentUserId(requireContext())
+
 
         getDataUser(userId)
 
@@ -76,7 +107,6 @@ class HomeFragment : Fragment() {
                 .setPopUpTo(R.id.navigation_home, true)
                 .build())
         }
-
     }
 
     private fun observeViewModel() {
@@ -89,24 +119,10 @@ class HomeFragment : Fragment() {
 
     private fun setUserData(dataUser: UserProfile) {
 
-
-//        val kaloriHarian = SharedPreferencesHelper.getTotalKaloriHarian(requireContext())
-        val kaloriHarian = 0
-        Log.d("KALORI_HARIAN", "Kalori Harian: $kaloriHarian")
-        val percentage: Int = ((kaloriHarian / 2645.0) * 100).toInt()
-
-        binding.apply{
-            name.text = dataUser.name
-            karboConsume.text = dataUser.karbohidratHarian.toString()
-            kaloriHarianJumlah.text = dataUser.kaloriHarian.toString()
-            proteinConsume.text = dataUser.proteinHarian.toString()
-            lemakConsume.text = dataUser.lemakHarian.toString()
-            gulaConsume.text = dataUser.gulaHarian.toString()
-            progressIndicatoKalori.isIndeterminate = false
-            progressIndicatoKalori.post {
-                progressIndicatoKalori.progress = percentage
-            }
-        }
+        binding.name.text = dataUser.name
+        val percentage: Int = ((totalKalori / 2645.0) * 100.0).toInt()
+        binding.progressIndicatoKalori.isIndeterminate = false
+        binding.progressIndicatoKalori.progress = percentage
 
         val riskPoint = setDiabetesRisk(dataUser)
         Log.d("RISK_POINT", "Risk Point: $riskPoint")
@@ -121,6 +137,7 @@ class HomeFragment : Fragment() {
                 circleGrren1.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_yellow)
                 circleGrren2.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_yellow)
                 circleGrren3.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_yellow)
+
                 diabetesRisk.setText(getString(R.string.risiko_diabetes_sedang))
                 textDiabetesRisk.setText(getString(R.string.text_risiko_diabetes_sedang))
             }
@@ -202,15 +219,9 @@ class HomeFragment : Fragment() {
         return riskPoint
     }
 
-//    private fun setKaloriHarian(): Int {
-//        val data = SharedPreferencesHelper.getScanData(requireContext())
-//        var kaloriHarian: Int = 0
-//        kaloriHarian = data(data.protein*4) + (data.karbo*4) + (data.lemak*9)
-//        return kaloriHarian
-//    }
-
-
-
-
-
+    private fun setKaloriHarian(dataUser: UserProfile): Int {
+        var kaloriHarian: Int = 0
+        kaloriHarian = (dataUser.proteinHarian*4) + (dataUser.karbohidratHarian*4) + (dataUser.lemakHarian*9)
+        return kaloriHarian
+    }
 }
