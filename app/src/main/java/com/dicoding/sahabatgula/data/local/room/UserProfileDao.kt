@@ -26,10 +26,6 @@ interface UserProfileDao {
     @Query("SELECT * FROM UserProfile WHERE email = :email LIMIT 1")
     suspend fun getUserProfilebyEmail_limit1(email: String): UserProfile
 
-    // get semua data user
-    @Query("SELECT * FROM UserProfile")
-    suspend fun getAllUserProfile(): List<UserProfile>
-
     // delete semua data user
     @Query("DELETE FROM UserProfile")
     suspend fun deleteAllUserProfile()

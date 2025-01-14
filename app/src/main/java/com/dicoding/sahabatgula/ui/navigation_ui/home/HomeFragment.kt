@@ -133,6 +133,7 @@ class HomeFragment : Fragment() {
         val textDiabetesRisk = binding.textDiabetesRisk
 
         when {
+            // diabetes sedang
             riskPoint <= 12 -> {
                 circleGrren1.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_yellow)
                 circleGrren2.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_yellow)
@@ -141,6 +142,7 @@ class HomeFragment : Fragment() {
                 diabetesRisk.setText(getString(R.string.risiko_diabetes_sedang))
                 textDiabetesRisk.setText(getString(R.string.text_risiko_diabetes_sedang))
             }
+            // diabetes tinggi
             riskPoint >= 14 -> {
                 circleGrren1.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_red)
                 circleGrren2.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_red)
@@ -149,6 +151,7 @@ class HomeFragment : Fragment() {
                 textDiabetesRisk.setText(getString(R.string.text_risiko_diabetes_tinggi))
             }
             else -> {
+                // diabetes rendah
                 circleGrren1.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_green)
                 circleGrren2.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_green)
                 circleGrren3.background = ContextCompat.getDrawable(requireContext(), R.drawable.circle_green)
