@@ -18,7 +18,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"http://sahabat-gula.us.to/\"")
+//        buildConfigField("String", "BASE_URL", "\"http://sahabat-gula.us.to/\"")
+        buildConfigField("String", "BASE_URL", "\"https://sahabat-gula-388071001917.asia-southeast2.run.app/\"")
 
     }
 
